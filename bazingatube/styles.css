@@ -14,6 +14,13 @@ body{
 }
 
 .wrap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#head{
     width: 100%;
     display: flex;
     padding-top: 2%;
@@ -39,6 +46,12 @@ input{
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+}
+
+#main{
+    display: flex;
+    padding-top: 5%;
+    width: 100%;
 }
 
 .video{

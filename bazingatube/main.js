@@ -36,12 +36,12 @@ function showResponse(response) {
 }
 
 function onClientLoad() {
+    gapi.client.setApiKey('AIzaSyCO0E_90cr2cmQVT3lL5vvbE-CcIXi2P5c');
     gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
 }
 
 function onYouTubeApiLoad() {
     alert("load2");
-    gapi.client.setApiKey('AIzaSyCO0E_90cr2cmQVT3lL5vvbE-CcIXi2P5c');
 }
 
 function search() {
