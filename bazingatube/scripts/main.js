@@ -84,14 +84,16 @@ function makeVideoStructure(index) {
         part: 'snippet',
         id: savedResponse.items[index].snippet.channelId,
     });
+    let temp;
     channelInfoRequest.execute(function (channelInfoResponse) {
-        author.href = channelInfoResponse.items[0].snippet.customUrl;
-        author.target = '_blank';
+        temp = channelInfoResponse.items[0].snippet.customUrl;
     })
+    author.href = temp;
+    author.target = '_blank';
 
     let date = document.createElement('p');
     date.className = 'video-date';
-    let temp = new Date(Date.parse(savedResponse.items[index].snippet.publishedAt.toString().replace(/ *\(.*\)/, "")));
+    temp = new Date(Date.parse(savedResponse.items[index].snippet.publishedAt.toString().replace(/ *\(.*\)/, "")));
     date.innerHTML = temp.getDate().toString() + '.' + (temp.getMonth() + 1) + '.' + temp.getFullYear();
     let description = document.createElement('p');
     description.className = 'video-description';

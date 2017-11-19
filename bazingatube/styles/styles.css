@@ -54,7 +54,7 @@ input{
     position: relative;
     display: flex;
     justify-content: space-around;
-    height: 70%;
+    height: 60%;
     background: lightcoral;
     width: 100%;
 }
