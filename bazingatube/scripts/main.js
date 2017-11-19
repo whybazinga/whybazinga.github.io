@@ -85,8 +85,7 @@ function makeVideoStructure(index) {
         id: savedResponse.items[index].snippet.channelId,
     });
     channelInfoRequest.execute(function (channelInfoResponse) {
-        author.href = channelInfoResponse.items[index].snippet.customUrl.toString();
-        alert(author.href);
+        author.href = channelInfoResponse.snippet.customUrl;
         author.target = '_blank';
     })
 

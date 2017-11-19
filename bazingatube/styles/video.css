@@ -1,7 +1,7 @@
 .video{
     padding:10px;
-    width: 480px;
-    height: 600px;
+    width: 300px;
+    height: 450px;
     position: relative;
     display: flex;
     border-radius: 10px;
@@ -16,6 +16,7 @@
     width: 100%;
     align-items: center;
     text-justify: inter-word;
+    word-wrap: break-word;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -23,17 +24,17 @@
 .video-tittle{
     display: inline;
     justify-content: center;
-    border: 2px solid gray;
+    border: 1px solid gray;
     font-size: 20px;
 }
 
 .video-image{
-    height: 360px;
+    height: 280px;
     background-image: url("#");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-size: 480px 360px;
+    background-size: 320px 280px;
 }
 
 .video-public-info{
@@ -44,6 +45,6 @@
 }
 
 .video-description{
-    height: 170px;
+    height: 100px;
     font-size: 15px;
 }
