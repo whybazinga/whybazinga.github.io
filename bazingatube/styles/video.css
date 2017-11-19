@@ -1,0 +1,48 @@
+.video{
+    padding:10px;
+    width: 400px;
+    height: 600px;
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid gray;
+    flex-direction: column;
+    background: lightgray;
+    align-content: center;
+}
+
+.video-tittle,
+.video-description,
+.video-public-info{
+    font-family: Courier New, Courier, monospace;
+    align-items: center;
+    text-justify: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.video-tittle{
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.video-image{
+    height: 360px;
+    background-image: url("#");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 480px 360px;
+}
+
+.video-public-info{
+    font-size: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.video-description{
+    font-size: 15px;
+}

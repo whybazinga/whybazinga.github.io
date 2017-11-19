@@ -23,7 +23,8 @@ body{
 #head{
     width: 100%;
     display: flex;
-    padding-top: 2%;
+    padding-top: 30px;
+    padding-bottom: 30px;
     justify-content: center;
 }
 
@@ -41,22 +42,17 @@ input{
     border-radius: 15px;
     opacity: 0.6;
     border: none;
-    background-image: url("images/search-icon.png");
+    background-image: url("../images/search-icon.png");
     background-size: 30px 30px;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
-#main{
-    display: flex;
-    padding-top: 5%;
-    width: 100%;
-}
-
-.video{
-    width:500px;
-    height: 500px;
+#result-window{
+    align-items: center;
     position: relative;
-    background: lightblue;
+    height: 60%;
+    background: lightcoral;
+    width: 100%;
 }
