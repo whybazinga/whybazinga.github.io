@@ -25,6 +25,7 @@ function onSearchResponse(response) {
     showResponse(response);
 
     let results = document.getElementById('result-window');
+    results.innerHTML = '';
     results.appendChild(makeVideoStructure(0));
     results.appendChild(makeVideoStructure(1));
     results.appendChild(makeVideoStructure(2));

@@ -14,7 +14,7 @@
 .video-tittle,
 .video-description,
 .video-public-info{
-    font-family: Courier New, Courier, monospace;
+    width: 100%;
     align-items: center;
     text-justify: auto;
     text-overflow: ellipsis;
@@ -23,7 +23,7 @@
 
 .video-tittle{
     height: 40px;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .video-public-info{
-    font-size: 20px;
+    font-size: 18px;
     height: 40px;
     display: flex;
     justify-content: space-around;
