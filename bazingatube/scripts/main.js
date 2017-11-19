@@ -1,7 +1,3 @@
-function showResponse(response) {
-    console.log(response);
-}
-
 function onClientLoad() {
     gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
 }
@@ -22,7 +18,6 @@ function search() {
 let savedResponse;
 function onSearchResponse(response) {
     savedResponse = response;
-    showResponse(response);
 
     let results = document.getElementById('result-window');
     while (results.firstChild) {
@@ -68,9 +63,12 @@ input.addEventListener('input', buttonView);
 function makeVideoStructure(index) {
     let video = document.createElement('div');
     video.className = 'video';
-    let title = document.createElement('p');
+    let title = document.createElement('a');
     title.className = 'video-tittle';
     title.innerHTML = savedResponse.items[index].snippet.title;
+    title.href = 'https://www.youtube.com/watch?v=' + savedResponse.items[index].id.videoId;
+    title.target = '_blank';
+
     let image = document.createElement('div');
     image.className = 'video-image';
     image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.high.url + ')';
@@ -78,9 +76,19 @@ function makeVideoStructure(index) {
         + savedResponse.items[index].snippet.thumbnails.high.height.toString() + 'px';
     let pubInfo = document.createElement('div');
     pubInfo.className = 'video-public-info';
-    let author = document.createElement('p');
+    let author = document.createElement('a');
     author.className = 'video-author';
     author.innerHTML = savedResponse.items[index].snippet.channelTitle;
+
+    let channelInfoRequest = gapi.client.youtube.channels.list({
+        part: 'snippet',
+        id: savedResponse.items[index].snippet.channelId,
+    });
+    channelInfoRequest.execute(function (channelInfoResponse) {
+        author.href = channelInfoResponse.items[index].snippet.customUrl.toString();
+        author.target = '_blank';
+    })
+
     let date = document.createElement('p');
     date.className = 'video-date';
     let temp = new Date(Date.parse(savedResponse.items[index].snippet.publishedAt.toString().replace(/ *\(.*\)/, "")));
