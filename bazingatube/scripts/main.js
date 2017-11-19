@@ -65,9 +65,9 @@ input.addEventListener('input', buttonView);
 function makeVideoStructure(index) {
     let video = document.createElement('div');
     video.className = 'video';
-    let tittle = document.createElement('p');
-    tittle.className = 'video-tittle';
-    tittle.innerHTML = savedResponse.items[index].snippet.tittle;
+    let title = document.createElement('p');
+    title.className = 'video-tittle';
+    title.innerHTML = savedResponse.items[index].snippet.title;
     let image = document.createElement('div');
     image.className = 'video-image';
     image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.high.url + ')';
@@ -78,15 +78,15 @@ function makeVideoStructure(index) {
     author.innerHTML = savedResponse.items[index].snippet.channelTitle;
     let date = document.createElement('p');
     date.className = 'video-date';
-    let temp = savedResponse.items[index].snippet.publishedAt;
-    date.innerHTML = temp.toString();
+    let temp = new Date(Date.parse(savedResponse.items[index].snippet.publishedAt.toString().replace(/ *\(.*\)/, "")));
+    date.innerHTML = temp.getDate().toString() + '.' + (temp.getMonth() + 1) + '.' + temp.getFullYear();
     let description = document.createElement('p');
     description.className = 'video-description';
     description.innerHTML = savedResponse.items[index].snippet.description;
 
     pubInfo.appendChild(author);
     pubInfo.appendChild(date);
-    video.appendChild(tittle);
+    video.appendChild(title);
     video.appendChild(image);
     video.appendChild(pubInfo);
     video.appendChild(description);
