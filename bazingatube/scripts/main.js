@@ -25,7 +25,9 @@ function onSearchResponse(response) {
     showResponse(response);
 
     let results = document.getElementById('result-window');
-    results.childNodes.forEach((child) => results.removeChild(child));
+    while (results.firstChild) {
+        results.removeChild(results.firstChild);
+    }
     results.appendChild(makeVideoStructure(0));
     results.appendChild(makeVideoStructure(1));
     results.appendChild(makeVideoStructure(2));
@@ -72,6 +74,8 @@ function makeVideoStructure(index) {
     let image = document.createElement('div');
     image.className = 'video-image';
     image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.high.url + ')';
+    image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.high.width.toString() + 'px '
+        + savedResponse.items[index].snippet.thumbnails.high.height.toString() + 'px';
     let pubInfo = document.createElement('div');
     pubInfo.className = 'video-public-info';
     let author = document.createElement('p');
