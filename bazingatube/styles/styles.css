@@ -52,6 +52,8 @@ input{
 #result-window{
     align-items: center;
     position: relative;
+    display: flex;
+    justify-content: space-around;
     height: 60%;
     background: lightcoral;
     width: 100%;
