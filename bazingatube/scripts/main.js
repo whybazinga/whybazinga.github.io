@@ -79,7 +79,7 @@ function makeVideoStructure(index) {
     let date = document.createElement('p');
     date.className = 'video-date';
     let temp = savedResponse.items[index].snippet.publishedAt;
-    date.innerHTML = (temp.getDate()).toString() + '.' + (temp.getMonth() + 1).toString() + '.' + (temp.getFullYear()).toString();
+    date.innerHTML = temp.toString();
     let description = document.createElement('p');
     description.className = 'video-description';
     description.innerHTML = savedResponse.items[index].snippet.description;
