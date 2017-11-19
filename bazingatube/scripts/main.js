@@ -71,9 +71,9 @@ function makeVideoStructure(index) {
 
     let image = document.createElement('div');
     image.className = 'video-image';
-    image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.high.url + ')';
-    image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.high.width.toString() + 'px '
-        + savedResponse.items[index].snippet.thumbnails.high.height.toString() + 'px';
+    image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.medium.url + ')';
+    image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.medium.width.toString() + 'px '
+        + savedResponse.items[index].snippet.thumbnails.medium.height.toString() + 'px';
     let pubInfo = document.createElement('div');
     pubInfo.className = 'video-public-info';
     let author = document.createElement('a');
@@ -85,8 +85,8 @@ function makeVideoStructure(index) {
         id: savedResponse.items[index].snippet.channelId,
     });
     channelInfoRequest.execute(function (channelInfoResponse) {
-        alert('!');
         author.href = channelInfoResponse.items[index].snippet.customUrl.toString();
+        alert(author.href);
         author.target = '_blank';
     })
 
