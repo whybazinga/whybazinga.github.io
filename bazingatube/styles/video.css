@@ -16,7 +16,7 @@
 .video-public-info{
     width: 100%;
     align-items: center;
-    text-justify: auto;
+    text-justify: inter-word;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -24,7 +24,7 @@
 .video-tittle{
     height: 40px;
     font-size: 20px;
-    text-align: center;
+    justify-content: center;
 }
 
 .video-image{
