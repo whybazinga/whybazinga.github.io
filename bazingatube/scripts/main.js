@@ -68,6 +68,7 @@ function resizeVideos() {
 }
 
 window.onresize = resizeVideos;
+window.onload = resizeVideos;
 
 function makeVideoStructure(index) {
     let video = document.createElement('div');
