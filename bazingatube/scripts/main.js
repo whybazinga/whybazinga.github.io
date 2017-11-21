@@ -60,6 +60,15 @@ button.addEventListener('click', buttonClick);
 input.addEventListener('click', inputClick);
 input.addEventListener('input', buttonView);
 
+window.onresize = function () {
+    let videos = document.getElementsByClassName('video');
+    videos.forEach(function (element) {
+        element.style.width = 0.2 * document.documentElement.clientWidth + 'px';
+        element.style.height = 5 * (0.2 * document.documentElement.clientWidth) / 4 + 'px';
+    }, this);
+
+};
+
 function makeVideoStructure(index) {
     let video = document.createElement('div');
     video.className = 'video';
@@ -72,14 +81,12 @@ function makeVideoStructure(index) {
     let image = document.createElement('div');
     image.className = 'video-image';
     image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.medium.url + ')';
-    //image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.medium.width.toString() + 'px '
-    //    + savedResponse.items[index].snippet.thumbnails.medium.height.toString() + 'px';
     let pubInfo = document.createElement('div');
     pubInfo.className = 'video-public-info';
     let author = document.createElement('a');
     author.className = 'video-author';
     author.innerHTML = savedResponse.items[index].snippet.channelTitle;
-    author.href = 'https://www.youtube.com/channel/' + savedResponse.items[index].id.channelId;
+    author.href = 'https://www.youtube.com/channel/' + savedResponse.items[index].snippet.channelId;
     author.target = '_blank';
 
     let date = document.createElement('p');
