@@ -64,7 +64,7 @@ function makeVideoStructure(index) {
     let video = document.createElement('div');
     video.className = 'video';
     let title = document.createElement('a');
-    title.className = 'video-tittle';
+    title.className = 'video-title';
     title.innerHTML = savedResponse.items[index].snippet.title;
     title.href = 'https://www.youtube.com/watch?v=' + savedResponse.items[index].id.videoId;
     title.target = '_blank';
@@ -72,23 +72,14 @@ function makeVideoStructure(index) {
     let image = document.createElement('div');
     image.className = 'video-image';
     image.style['background-image'] = 'url(' + savedResponse.items[index].snippet.thumbnails.medium.url + ')';
-    image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.medium.width.toString() + 'px '
-        + savedResponse.items[index].snippet.thumbnails.medium.height.toString() + 'px';
+    //image.style['background-size'] = savedResponse.items[index].snippet.thumbnails.medium.width.toString() + 'px '
+    //    + savedResponse.items[index].snippet.thumbnails.medium.height.toString() + 'px';
     let pubInfo = document.createElement('div');
     pubInfo.className = 'video-public-info';
     let author = document.createElement('a');
     author.className = 'video-author';
     author.innerHTML = savedResponse.items[index].snippet.channelTitle;
-
-    let channelInfoRequest = gapi.client.youtube.channels.list({
-        part: 'snippet',
-        id: savedResponse.items[index].snippet.channelId,
-    });
-    let temp;
-    channelInfoRequest.execute(function (channelInfoResponse) {
-        temp = channelInfoResponse.items[0].snippet.customUrl;
-    })
-    author.href = temp;
+    author.href = 'https://www.youtube.com/channel/' + savedResponse.items[index].id.channelId;
     author.target = '_blank';
 
     let date = document.createElement('p');
