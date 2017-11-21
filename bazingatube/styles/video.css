@@ -1,6 +1,7 @@
 .video{
     padding: 10px;
     min-width: 160px;
+    width: 20%;
     min-height: 240px;
     position: relative;
     display: flex;
@@ -15,13 +16,12 @@
     width: 100%;
     font-size: 100%;
     text-justify: inter-word;
-    word-wrap: break-word;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 .video-title{
-    height: 10%;
+    display: inline;
     min-height: 20px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .video-public-info{
-    height: 10%;
+    display: inline;
     min-height: 20px;
     display: flex;
     justify-content: space-around;

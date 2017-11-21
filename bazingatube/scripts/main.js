@@ -60,14 +60,14 @@ button.addEventListener('click', buttonClick);
 input.addEventListener('click', inputClick);
 input.addEventListener('input', buttonView);
 
-window.onresize = function () {
+function resizeVideos() {
     let videos = document.getElementsByClassName('video');
-    videos.forEach(function (element) {
-        element.style.width = 0.2 * document.documentElement.clientWidth + 'px';
-        element.style.height = 5 * (0.2 * document.documentElement.clientWidth) / 4 + 'px';
-    }, this);
+    for (let i = 0; i < videos.length; i++) {
+        videos.item(i).style.height = 5 * videos.item(i).clientWidth / 4 + 'px';
+    }
+}
 
-};
+window.onresize = resizeVideos;
 
 function makeVideoStructure(index) {
     let video = document.createElement('div');
