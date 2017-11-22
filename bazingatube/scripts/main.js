@@ -11,25 +11,41 @@ function search() {
         part: 'snippet',
         q: searchQuery,
         type: 'video',
+        order: 'viewCount',
     });
     request.execute(onSearchResponse);
 }
 
 let savedResponse;
+
 function onSearchResponse(response) {
     savedResponse = response;
-
-    let results = document.getElementById('result-window');
-    while (results.firstChild) {
-        results.removeChild(results.firstChild);
-    }
-    results.appendChild(makeVideoStructure(0));
-    results.appendChild(makeVideoStructure(1));
-    results.appendChild(makeVideoStructure(2));
+    removeVideos();
+    addVideos(loadNewVideosPackage());
 }
 
 //===========================================================================
 
+let results = document.getElementById('result-window');
+
+function removeVideos() {
+    while (results.firstChild) {
+        results.removeChild(results.firstChild);
+    }
+}
+
+function loadNewVideosPackage() {
+    let pack = [];
+    for (let i = 0; i < 3; i++) {
+        pack[i] = makeVideoStructure(i);
+    }
+    return pack;
+}
+
+function addVideos(videosPackage) {
+    videosPackage.forEach((element) => results.appendChild(element));
+    resizeVideos(videosPackage);
+}
 
 let input = document.getElementById('search-box');
 let button = document.getElementsByClassName('button')[0];
@@ -60,15 +76,15 @@ button.addEventListener('click', buttonClick);
 input.addEventListener('click', inputClick);
 input.addEventListener('input', buttonView);
 
-function resizeVideos() {
-    let videos = document.getElementsByClassName('video');
+function resizeVideos(videos) {
     for (let i = 0; i < videos.length; i++) {
         videos.item(i).style.height = 5 * videos.item(i).clientWidth / 4 + 'px';
     }
 }
 
-window.onresize = resizeVideos;
+window.onresize = function () { resizeVideos(document.getElementsByClassName('video')); };
 
+//================================================================================
 function makeVideoStructure(index) {
     let video = document.createElement('div');
     video.className = 'video';
@@ -103,8 +119,6 @@ function makeVideoStructure(index) {
     video.appendChild(image);
     video.appendChild(pubInfo);
     video.appendChild(description);
-
-    video.style.height = 5 * video.clientWidth / 4 + 'px';
 
     return video;
 }
