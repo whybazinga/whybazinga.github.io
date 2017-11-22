@@ -34,9 +34,11 @@ function removeVideos() {
     }
 }
 
+let videosPerPage = 3;
+
 function loadNewVideosPackage() {
     let pack = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < videosPerPage; i++) {
         pack[i] = makeVideoStructure(i);
     }
     return pack;
@@ -44,7 +46,18 @@ function loadNewVideosPackage() {
 
 function addVideos(videosPackage) {
     videosPackage.forEach((element) => results.appendChild(element));
-    resizeVideos(videosPackage);
+    let temp = document.getElementsByClassName('video');
+    let b = [];
+    for (let i = 0; i < videosPerPage; i++) {
+        b[i] = temp[temp.length - i - 1];
+    }
+    resizeVideos(b);
+}
+
+function resizeVideos(videos) {
+    for (let i = 0; i < videos.length; i++) {
+        videos[i].style.height = 5 * videos[i].clientWidth / 4 + 'px';
+    }
 }
 
 let input = document.getElementById('search-box');
@@ -75,12 +88,6 @@ function buttonView() {
 button.addEventListener('click', buttonClick);
 input.addEventListener('click', inputClick);
 input.addEventListener('input', buttonView);
-
-function resizeVideos(videos) {
-    for (let i = 0; i < videos.length; i++) {
-        videos.item(i).style.height = 5 * videos.item(i).clientWidth / 4 + 'px';
-    }
-}
 
 window.onresize = function () { resizeVideos(document.getElementsByClassName('video')); };
 
@@ -119,6 +126,8 @@ function makeVideoStructure(index) {
     video.appendChild(image);
     video.appendChild(pubInfo);
     video.appendChild(description);
+
+    video.style.width = results.clientWidth * 0.2;
 
     return video;
 }
