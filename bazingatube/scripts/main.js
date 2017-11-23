@@ -12,7 +12,7 @@ function search() {
         q: searchQuery,
         type: 'video',
         order: 'viewCount',
-        pageToken: nextPage,
+        //pageToken: nextPage,
     });
     request.execute(onSearchResponse);
 }
@@ -37,14 +37,10 @@ function removeVideos() {
 let videosPerPage = 3;
 let nextPage;
 
-let k = 40;
-
 function loadNewPage() {
     nextPage = savedResponse.nextPageToken;
     let newPage = document.createElement('div');
     newPage.className = 'page';
-    newPage.style.background = 'rgb(' + k + ',0,0)';
-    k = (k + 40) % 255;
     let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30)
     newPage.style.width = temp + 'px';
     results.style.width = results.clientWidth + temp;

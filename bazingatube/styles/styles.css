@@ -85,4 +85,5 @@ input{
     display: flex;
     position: relative;
     height: 100%;
+    background: rgb(235,235,235);
 }
