@@ -12,7 +12,6 @@ function search() {
         q: searchQuery,
         type: 'video',
         order: 'viewCount',
-        //pageToken: nextPage,
     });
     request.execute(onSearchResponse);
 }
