@@ -6,12 +6,15 @@ function onYouTubeApiLoad() {
     gapi.client.setApiKey('AIzaSyCO0E_90cr2cmQVT3lL5vvbE-CcIXi2P5c');
 }
 
+let VERY_TEMPORARY_FLAG = false;        //DELETE THIS LINE
+
 function search() {
     var request = gapi.client.youtube.search.list({
         part: 'snippet',
         q: searchQuery,
         type: 'video',
         order: 'viewCount',
+        pageToken: nextPage,
     });
     request.execute(onSearchResponse);
 }
@@ -20,8 +23,7 @@ let savedResponse;
 
 function onSearchResponse(response) {
     savedResponse = response;
-    removeVideos();
-    addVideos(loadNewVideosPackage());
+    loadNewPage();
 }
 
 //===========================================================================
@@ -35,39 +37,45 @@ function removeVideos() {
 }
 
 let videosPerPage = 3;
+let nextPage;
 
-function loadNewVideosPackage() {
-    let pack = [];
+function loadNewPage() {
+    nextPage = savedResponse.nextPageToken;
+    let newPage = document.createElement('div');
+    newPage.className = 'page';
+    newPage.style.width = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+    results.style.width = results.clientWidth + parseInt(newPage.style.width);
     for (let i = 0; i < videosPerPage; i++) {
-        pack[i] = makeVideoStructure(i);
+        newPage.appendChild(makeVideoStructure(i));
     }
-    return pack;
-}
-
-function addVideos(videosPackage) {
-    videosPackage.forEach((element) => results.appendChild(element));
-    let temp = document.getElementsByClassName('video');
-    let b = [];
-    for (let i = 0; i < videosPerPage; i++) {
-        b[i] = temp[temp.length - i - 1];
-    }
-    resizeVideos(b);
+    results.appendChild(newPage);
+    let pageRes = document.getElementsByClassName('page');
+    resizeVideos(pageRes[pageRes.length - 1]);
 }
 
 function resizeVideos(videos) {
     for (let i = 0; i < videos.length; i++) {
-        videos[i].style.height = 5 * videos[i].clientWidth / 4 + 'px';
+        videos[i].style.width = 4 * videos[i].clientHeight / 5 + 'px';
     }
 }
 
 let input = document.getElementById('search-box');
 let button = document.getElementsByClassName('button')[0];
-
 let searchQuery = '';
 
+window.onclick = function () {        //DELETE THIS LINE
+    if (VERY_TEMPORARY_FLAG) {        //DELETE THIS LINE
+        search();                     //DELETE THIS LINE
+    }
+}
+
 function buttonClick() {
-    searchQuery = input.value;
-    search();
+    if (searchQuery !== input.value) {
+        searchQuery = input.value;
+        removeVideos();
+        search();
+        VERY_TEMPORARY_FLAG = true;     //DELETE THIS LINE
+    }
 }
 
 function inputClick() {

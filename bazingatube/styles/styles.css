@@ -78,5 +78,11 @@ input{
     min-height: 300px;
     background: rgb(250,250,250);
     height: 80%;
-    width: 100%;
+    width: 0;
+}
+
+.page{
+    display: flex;
+    position: relative;
+    height: 100%;
 }
