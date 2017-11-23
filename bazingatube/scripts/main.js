@@ -37,10 +37,14 @@ function removeVideos() {
 let videosPerPage = 3;
 let nextPage;
 
+let k = 40;
+
 function loadNewPage() {
     nextPage = savedResponse.nextPageToken;
     let newPage = document.createElement('div');
     newPage.className = 'page';
+    newPage.style.background = 'rgb(' + k + ',' + k + ',' + k + ')';
+    k = (k + 40) % 255;
     newPage.style.width = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
     results.style.width = results.clientWidth + parseInt(newPage.style.width);
     for (let i = 0; i < videosPerPage; i++) {
