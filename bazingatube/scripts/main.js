@@ -69,9 +69,7 @@ function buttonClick() {
     if (searchQuery !== input.value) {
         searchQuery = input.value;
         removeVideos();
-        for (let i = 0; i < 3; i++) {
-            search();
-        }
+        search();
     }
 }
 
