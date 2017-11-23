@@ -37,12 +37,13 @@ let videosPerPage = 3;
 let nextPage;
 
 function loadNewPage() {
+    //TODO: fix situation when we make the window smaller and have some space left on the right 
     nextPage = savedResponse.nextPageToken;
     let newPage = document.createElement('div');
     newPage.className = 'page';
-    let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30)
+    let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
     newPage.style.width = temp + 'px';
-    results.style.width = results.clientWidth + temp;
+    results.style.width = results.clientWidth + temp + 'px';
     for (let i = 0; i < videosPerPage; i++) {
         newPage.appendChild(makeVideoStructure(i));
     }
@@ -130,4 +131,3 @@ function makeVideoStructure(index) {
 
     return video;
 }
-
