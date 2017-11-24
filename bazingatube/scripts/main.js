@@ -14,15 +14,16 @@ function search() {
         order: 'viewCount',
         pageToken: nextPage,
     });
-    request.execute(onSearchResponse);
+    request.execute(function (response) {
+        savedResponse = response;
+        nextPage = savedResponse.nextPageToken;
+        loadNewPage();
+    });
 }
 
 let savedResponse;
 
-function onSearchResponse(response) {
-    savedResponse = response;
-    loadNewPage();
-}
+
 
 //===========================================================================
 
@@ -36,15 +37,15 @@ function removeVideos() {
 
 let videosPerPage = 3;
 let nextPage;
+let k = 50;     //TODO: delete
 let pageCount = 0;
 let currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
 
 function loadNewPage() {
-    //TODO: fix situation when we make the window smaller and have some space left on the right 
-    nextPage = savedResponse.nextPageToken;
     let newPage = document.createElement('div');
     newPage.className = 'page';
-    //let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+    newPage.style.background = 'rgb(0,0,' + k + ')';    //TODO: delete
+    k = (k + 50) % 255;                                 //TODO: delete
     newPage.style.width = currPageWidth + 'px';
     results.style.width = results.clientWidth + currPageWidth + 'px';
     for (let i = 0; i < videosPerPage; i++) {
@@ -93,7 +94,7 @@ function buttonClick() {
     if (searchQuery !== input.value) {
         searchQuery = input.value;
         removeVideos();
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             search();
         }
     }
@@ -158,3 +159,26 @@ function makeVideoStructure(index) {
 
     return video;
 }
+
+let currX = 0;
+let startX;
+
+results.addEventListener("mousedown", function (downEvent) {
+    startX = downEvent.clientX;
+    results.onmousemove = function (moveEvent) {
+        currX = currX + startX - moveEvent.clientX;
+        if (currX <= -results.clientWidth + document.documentElement.clientWidth) {
+            currX = -results.clientWidth + document.documentElement.clientWidth + 1;
+            search();
+        }
+        else if (currX >= 0) {
+            currX = 0;
+        }
+        results.style.left = currX + 'px';
+        moveEvent.preventDefault();
+    }
+});
+
+results.addEventListener("mouseup", function () {
+    results.onmousemove = null
+});
