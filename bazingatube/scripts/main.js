@@ -69,7 +69,7 @@ function resizeResults() {
 function resizePages(pages) {
     currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
     for (let i = 0; i < pages.length; i++) {
-        pages[i].style.width = temp + 'px';
+        pages[i].style.width = currPageWidth + 'px';
     }
 }
 
@@ -93,7 +93,9 @@ function buttonClick() {
     if (searchQuery !== input.value) {
         searchQuery = input.value;
         removeVideos();
-        search();
+        for (let i = 0; i < 5; i++) {
+            search();
+        }
     }
 }
 
