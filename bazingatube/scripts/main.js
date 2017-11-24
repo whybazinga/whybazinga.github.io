@@ -49,7 +49,7 @@ function loadNewPage() {
     }
     results.appendChild(newPage);
     let pageRes = document.getElementsByClassName('page');
-    resizeVideos(pageRes[pageRes.length - 1]);
+    resizeVideos(pageRes[pageRes.length - 1].childNodes);
 }
 
 function resizeVideos(videos) {
@@ -126,8 +126,6 @@ function makeVideoStructure(index) {
     video.appendChild(image);
     video.appendChild(pubInfo);
     video.appendChild(description);
-
-    video.style.width = results.clientWidth * 0.2;
 
     return video;
 }
