@@ -12,6 +12,7 @@ function search() {
         q: searchQuery,
         type: 'video',
         order: 'viewCount',
+        pageToken: nextPage,
     });
     request.execute(onSearchResponse);
 }
@@ -35,21 +36,41 @@ function removeVideos() {
 
 let videosPerPage = 3;
 let nextPage;
+let pageCount = 0;
+let currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
 
 function loadNewPage() {
     //TODO: fix situation when we make the window smaller and have some space left on the right 
     nextPage = savedResponse.nextPageToken;
     let newPage = document.createElement('div');
     newPage.className = 'page';
-    let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
-    newPage.style.width = temp + 'px';
-    results.style.width = results.clientWidth + temp + 'px';
+    //let temp = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+    newPage.style.width = currPageWidth + 'px';
+    results.style.width = results.clientWidth + currPageWidth + 'px';
     for (let i = 0; i < videosPerPage; i++) {
         newPage.appendChild(makeVideoStructure(i));
     }
     results.appendChild(newPage);
     let pageRes = document.getElementsByClassName('page');
     resizeVideos(pageRes[pageRes.length - 1].childNodes);
+    pageCount++;
+}
+
+function resizeAll() {
+    resizeVideos(document.getElementsByClassName('video'));
+    resizePages(document.getElementsByClassName('page'));
+    resizeResults();
+}
+
+function resizeResults() {
+    results.style.width = pageCount * currPageWidth + 'px';
+}
+
+function resizePages(pages) {
+    currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+    for (let i = 0; i < pages.length; i++) {
+        pages[i].style.width = temp + 'px';
+    }
 }
 
 function resizeVideos(videos) {
@@ -61,6 +82,12 @@ function resizeVideos(videos) {
 let input = document.getElementById('search-box');
 let button = document.getElementsByClassName('button')[0];
 let searchQuery = '';
+
+input.onsearch = function () {
+    if (input.value !== '') {
+        buttonClick();
+    }
+}
 
 function buttonClick() {
     if (searchQuery !== input.value) {
@@ -89,7 +116,7 @@ button.addEventListener('click', buttonClick);
 input.addEventListener('click', inputClick);
 input.addEventListener('input', buttonView);
 
-window.onresize = function () { resizeVideos(document.getElementsByClassName('video')); };
+window.onresize = resizeAll;
 
 //================================================================================
 function makeVideoStructure(index) {
