@@ -6,18 +6,26 @@ function onYouTubeApiLoad() {
     gapi.client.setApiKey('AIzaSyCO0E_90cr2cmQVT3lL5vvbE-CcIXi2P5c');
 }
 
+let responseRecievedFlag = true;
+
 function search() {
-    var request = gapi.client.youtube.search.list({
+    let request = gapi.client.youtube.search.list({
         part: 'snippet',
         q: searchQuery,
         type: 'video',
         order: 'viewCount',
         pageToken: nextPage,
     });
+    responseRecievedFlag = false;
     request.execute(function (response) {
+        responseRecievedFlag = true;
         savedResponse = response;
+        //if (nextPage !== savedResponse.nextPageToken) {
         nextPage = savedResponse.nextPageToken;
-        loadNewPage();
+        videosPerPage = savedResponse.pageInfo.resultsPerPage;
+        currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+        pages.push(loadNewPage());
+        //}
     });
 }
 
@@ -32,14 +40,17 @@ let results = document.getElementById('result-window');
 function removeVideos() {
     while (results.firstChild) {
         results.removeChild(results.firstChild);
+        pages = [];
     }
 }
 
-let videosPerPage = 3;
+let videosPerPage = 0;
 let nextPage;
 let k = 50;     //TODO: delete
-let pageCount = 0;
-let currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+let pages = [];
+let currPageWidth = 0;
+let currVideoWidth = 0;
+
 
 function loadNewPage() {
     let newPage = document.createElement('div');
@@ -51,10 +62,9 @@ function loadNewPage() {
     for (let i = 0; i < videosPerPage; i++) {
         newPage.appendChild(makeVideoStructure(i));
     }
-    results.appendChild(newPage);
-    let pageRes = document.getElementsByClassName('page');
-    resizeVideos(pageRes[pageRes.length - 1].childNodes);
-    pageCount++;
+    return newPage;
+    //let pageRes = document.getElementsByClassName('page');
+    //resizeVideos(pageRes[pageRes.length - 1].childNodes);
 }
 
 function resizeAll() {
@@ -64,19 +74,22 @@ function resizeAll() {
 }
 
 function resizeResults() {
-    results.style.width = pageCount * currPageWidth + 'px';
+    results.style.width = pages.length * currPageWidth + 'px';
+    videosPerWindow = Math.floor(document.documentElement.clientWidth / (currVideoWidth + 30));
 }
 
 function resizePages(pages) {
-    currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
+    currPageWidth = videosPerPage * (currVideoWidth + 30);
+    currX = currX === 0 ? 0 : -currPageWidth;
     for (let i = 0; i < pages.length; i++) {
         pages[i].style.width = currPageWidth + 'px';
     }
 }
 
 function resizeVideos(videos) {
+    currVideoWidth = 4 * 0.8 * results.clientHeight / 5;
     for (let i = 0; i < videos.length; i++) {
-        videos[i].style.width = 4 * videos[i].clientHeight / 5 + 'px';
+        videos[i].style.width = currVideoWidth + 'px';
     }
 }
 
@@ -90,13 +103,14 @@ input.onsearch = function () {
     }
 }
 
+let initFlag;
+
 function buttonClick() {
     if (searchQuery !== input.value) {
         searchQuery = input.value;
         removeVideos();
-        for (let i = 0; i < 3; i++) {
-            search();
-        }
+        loadMorePagesToArray();
+        initFlag = true;
     }
 }
 
@@ -162,23 +176,102 @@ function makeVideoStructure(index) {
 
 let currX = 0;
 let startX;
+let videosPerWindow = Math.floor(document.documentElement.clientWidth / (currVideoWidth + 30));
+let videosLeftToShow = 0;
+let currentPage = 0;
+
 
 results.addEventListener("mousedown", function (downEvent) {
     startX = downEvent.clientX;
-    results.onmousemove = function (moveEvent) {
-        currX = currX + startX - moveEvent.clientX;
-        if (currX <= -results.clientWidth + document.documentElement.clientWidth) {
-            currX = -results.clientWidth + document.documentElement.clientWidth + 1;
-            search();
-        }
-        else if (currX >= 0) {
-            currX = 0;
-        }
-        results.style.left = currX + 'px';
-        moveEvent.preventDefault();
-    }
 });
 
-results.addEventListener("mouseup", function () {
-    results.onmousemove = null
+results.addEventListener("mousemove", function (moveEvent) {
+    moveEvent.preventDefault();
 });
+
+results.addEventListener("mouseup", function (upEvent) {
+    let deltaX = 0;
+    deltaX = startX - upEvent.clientX;
+
+    if (Math.abs(deltaX) > 200 && Math.abs(deltaX) < document.documentElement.clientWidth * 0.7) {
+        if (deltaX > 0) {
+            if (videosLeftToShow > 0) {
+                currX -= Math.min(videosPerWindow, videosLeftToShow) * (currVideoWidth + 30);
+                videosLeftToShow = Math.max(videosLeftToShow - videosPerWindow, 0);
+            } else {
+                changePage(1);
+            }
+        } else if (deltaX < 0) {
+            if (videosLeftToShow + videosPerWindow < videosPerPage) {
+                currX += Math.min(videosPerWindow, videosPerPage - videosPerWindow - videosLeftToShow) * (currVideoWidth + 30);
+                videosLeftToShow = Math.min(videosPerPage - videosPerWindow, videosLeftToShow + videosPerWindow);
+            } else {
+                changePage(-1);
+            }
+        }
+    }
+    else if (Math.abs(deltaX) >= document.documentElement.clientWidth * 0.7) {
+        if (deltaX > 0) {
+            changePage(1);
+        } else if (deltaX < 0) {
+            if (currentPage !== 0) {
+                changePage(-1);
+            }
+        }
+    }
+    results.style.transitionDuration = '1s';
+    results.style.left = currX + 'px';
+    setTimeout(() => results.style.transitionDuration = '0s', 1000);
+});
+
+function changePage(index) {
+    if (index === 'init') {
+        results.appendChild(pages[0]);
+        results.appendChild(pages[1]);
+        results.appendChild(pages[2]);
+    }
+    else if (index === -1) {
+        if (currentPage > 0) {
+            currentPage--;
+            if (currentPage > 0) {
+                results.removeChild(results.lastChild);
+                results.insertBefore(pages[currentPage - 1], results.firstChild);
+            }
+            if (currentPage === 0) {
+                currX = 0;
+            } else {
+                currX = -currPageWidth;
+            }
+        }
+    } else if (index === 1) {
+        if (currentPage > pages.length - 5) {
+            loadMorePagesToArray();
+        }
+        currentPage++;
+        if (currentPage > 1) {
+            results.removeChild(results.firstChild);
+            results.appendChild(pages[currentPage + 1]);
+        }
+        currX = -currPageWidth;
+    }
+    resizeAll();
+    videosLeftToShow = videosPerPage - videosPerWindow;
+}
+
+function loadMorePagesToArray() {
+    let border = pages.length + 5;
+    let filler = setInterval(function () {
+        if (searchQuery !== '') {
+            if (responseRecievedFlag) {
+                search();
+            }
+            if (pages.length > border) {
+                if (initFlag) {
+                    changePage('init');
+                }
+                initFlag = false;
+                clearInterval(filler);
+            }
+        }
+    }, 10);
+}
