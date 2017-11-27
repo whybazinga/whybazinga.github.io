@@ -1,3 +1,19 @@
+document.body.innerHTML = `
+<div class="wrap">
+<div id="head">
+    <input type="search" id="search-box" placeholder="Search..">
+    <button class="button" disabled></button>
+</div>
+<div id="result-window">
+</div>
+<div id="result-window">
+</div>
+<div id="page-indicator">
+</div>
+</div>
+`
+
+
 function onClientLoad() {
     gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
 }
@@ -20,12 +36,10 @@ function search() {
     request.execute(function (response) {
         responseRecievedFlag = true;
         savedResponse = response;
-        //if (nextPage !== savedResponse.nextPageToken) {
         nextPage = savedResponse.nextPageToken;
         videosPerPage = savedResponse.pageInfo.resultsPerPage;
         currPageWidth = videosPerPage * (4 * 0.8 * results.clientHeight / 5 + 30);
         pages.push(loadNewPage());
-        //}
     });
 }
 
@@ -38,6 +52,7 @@ let savedResponse;
 let results = document.getElementById('result-window');
 
 function removeVideos() {
+    nextPage = undefined;
     while (results.firstChild) {
         results.removeChild(results.firstChild);
         pages = [];
@@ -46,7 +61,6 @@ function removeVideos() {
 
 let videosPerPage = 0;
 let nextPage;
-let k = 50;     //TODO: delete
 let pages = [];
 let currPageWidth = 0;
 let currVideoWidth = 0;
@@ -55,16 +69,11 @@ let currVideoWidth = 0;
 function loadNewPage() {
     let newPage = document.createElement('div');
     newPage.className = 'page';
-    newPage.style.background = 'rgb(0,0,' + k + ')';    //TODO: delete
-    k = (k + 50) % 255;                                 //TODO: delete
     newPage.style.width = currPageWidth + 'px';
-    results.style.width = results.clientWidth + currPageWidth + 'px';
     for (let i = 0; i < videosPerPage; i++) {
         newPage.appendChild(makeVideoStructure(i));
     }
     return newPage;
-    //let pageRes = document.getElementsByClassName('page');
-    //resizeVideos(pageRes[pageRes.length - 1].childNodes);
 }
 
 function resizeAll() {
@@ -74,7 +83,8 @@ function resizeAll() {
 }
 
 function resizeResults() {
-    results.style.width = pages.length * currPageWidth + 'px';
+    results.style.width = 2 * currPageWidth + Math.max(document.documentElement.clientWidth, currPageWidth) + 'px';
+    results.style.left = -currentPage + "px";
     videosPerWindow = Math.floor(document.documentElement.clientWidth / (currVideoWidth + 30));
 }
 
@@ -180,9 +190,12 @@ let videosPerWindow = Math.floor(document.documentElement.clientWidth / (currVid
 let videosLeftToShow = 0;
 let currentPage = 0;
 
+let pageIndicator = document.getElementById('page-indicator');
 
 results.addEventListener("mousedown", function (downEvent) {
     startX = downEvent.clientX;
+    setTimeout(() => pageIndicator.style.transitionDelay = '1s', 500);
+    pageIndicator.style.bottom = '100px';
 });
 
 results.addEventListener("mousemove", function (moveEvent) {
@@ -190,6 +203,8 @@ results.addEventListener("mousemove", function (moveEvent) {
 });
 
 results.addEventListener("mouseup", function (upEvent) {
+    setTimeout(() => pageIndicator.style.transitionDelay = '0s', 1500);
+    pageIndicator.style.bottom = '-40px';
     let deltaX = 0;
     deltaX = startX - upEvent.clientX;
 
@@ -206,7 +221,9 @@ results.addEventListener("mouseup", function (upEvent) {
                 currX += Math.min(videosPerWindow, videosPerPage - videosPerWindow - videosLeftToShow) * (currVideoWidth + 30);
                 videosLeftToShow = Math.min(videosPerPage - videosPerWindow, videosLeftToShow + videosPerWindow);
             } else {
-                changePage(-1);
+                if (currentPage !== 0) {
+                    changePage(-1);
+                }
             }
         }
     }
@@ -219,42 +236,32 @@ results.addEventListener("mouseup", function (upEvent) {
             }
         }
     }
-    results.style.transitionDuration = '1s';
-    results.style.left = currX + 'px';
-    setTimeout(() => results.style.transitionDuration = '0s', 1000);
+    results.childNodes[0].style.left = currX + 'px';
 });
 
 function changePage(index) {
     if (index === 'init') {
         results.appendChild(pages[0]);
-        results.appendChild(pages[1]);
-        results.appendChild(pages[2]);
     }
     else if (index === -1) {
-        if (currentPage > 0) {
-            currentPage--;
-            if (currentPage > 0) {
-                results.removeChild(results.lastChild);
-                results.insertBefore(pages[currentPage - 1], results.firstChild);
-            }
-            if (currentPage === 0) {
-                currX = 0;
-            } else {
-                currX = -currPageWidth;
-            }
-        }
+        currentPage--;
+        results.firstChild.style.left = document.documentElement.clientWidth + 'px';
+        results.removeChild(results.lastChild);
+        pages[currentPage].style.left = -currPageWidth + 'px';
+        results.appendChild(pages[currentPage]);
     } else if (index === 1) {
         if (currentPage > pages.length - 5) {
             loadMorePagesToArray();
         }
         currentPage++;
-        if (currentPage > 1) {
-            results.removeChild(results.firstChild);
-            results.appendChild(pages[currentPage + 1]);
-        }
-        currX = -currPageWidth;
+        results.firstChild.style.left = -currPageWidth + 'px';
+        results.removeChild(results.lastChild);
+        pages[currentPage].style.left = document.documentElement.clientWidth + 'px';
+        results.appendChild(pages[currentPage]);
     }
+    pageIndicator.innerHTML = currentPage;
     resizeAll();
+    currX = 0;
     videosLeftToShow = videosPerPage - videosPerWindow;
 }
 
@@ -268,8 +275,8 @@ function loadMorePagesToArray() {
             if (pages.length > border) {
                 if (initFlag) {
                     changePage('init');
+                    initFlag = false;
                 }
-                initFlag = false;
                 clearInterval(filler);
             }
         }
