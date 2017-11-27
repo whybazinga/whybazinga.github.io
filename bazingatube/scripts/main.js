@@ -190,19 +190,27 @@ let currentPage = 0;
 
 let pageIndicator = document.getElementById('page-indicator');
 
-results.addEventListener("mousedown", function (downEvent) {
-    downEvent.preventDefault();
-    startX = downEvent.clientX || (downEvent.clientX === 0 ? 0 : downEvent['touches'][0]['clientX']);
-    setTimeout(() => pageIndicator.style.transitionDelay = '3s', 0);
-    pageIndicator.style.bottom = '40px';
+results.addEventListener('touchstart', mouseDownFunc)
 
-});
+results.addEventListener('touchend', mouseUpFunc);
+
+results.addEventListener("mousedown", mouseDownFunc);
+
+results.addEventListener("mouseup", mouseUpFunc);
 
 results.addEventListener("mousemove", function (moveEvent) {
     moveEvent.preventDefault();
 });
 
-results.addEventListener("mouseup", function (upEvent) {
+function mouseDownFunc(downEvent) {
+    downEvent.preventDefault();
+    startX = downEvent.clientX || (downEvent.clientX === 0 ? 0 : downEvent['touches'][0]['clientX']);
+    setTimeout(() => pageIndicator.style.transitionDelay = '3s', 0);
+    pageIndicator.style.bottom = '40px';
+
+}
+
+function mouseUpFunc(upEvent) {
     upEvent.preventDefault();
     setTimeout(() => pageIndicator.style.transitionDelay = '0s', 0);
     pageIndicator.style.bottom = '-20%';
@@ -238,7 +246,7 @@ results.addEventListener("mouseup", function (upEvent) {
         }
     }
     results.childNodes[0].style.left = currX + 'px';
-});
+}
 
 function changePage(index) {
     if (index === 'init') {
