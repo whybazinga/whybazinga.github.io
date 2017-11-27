@@ -6,8 +6,6 @@ document.body.innerHTML = `
 </div>
 <div id="result-window">
 </div>
-<div id="result-window">
-</div>
 <div id="page-indicator">
 </div>
 </div>
@@ -193,9 +191,11 @@ let currentPage = 0;
 let pageIndicator = document.getElementById('page-indicator');
 
 results.addEventListener("mousedown", function (downEvent) {
-    startX = downEvent.clientX;
-    setTimeout(() => pageIndicator.style.transitionDelay = '1s', 500);
-    pageIndicator.style.bottom = '100px';
+    downEvent.preventDefault();
+    startX = downEvent.clientX || (downEvent.clientX === 0 ? 0 : downEvent['touches'][0]['clientX']);
+    setTimeout(() => pageIndicator.style.transitionDelay = '3s', 0);
+    pageIndicator.style.bottom = '40px';
+
 });
 
 results.addEventListener("mousemove", function (moveEvent) {
@@ -203,10 +203,11 @@ results.addEventListener("mousemove", function (moveEvent) {
 });
 
 results.addEventListener("mouseup", function (upEvent) {
-    setTimeout(() => pageIndicator.style.transitionDelay = '0s', 1500);
-    pageIndicator.style.bottom = '-40px';
+    upEvent.preventDefault();
+    setTimeout(() => pageIndicator.style.transitionDelay = '0s', 0);
+    pageIndicator.style.bottom = '-20%';
     let deltaX = 0;
-    deltaX = startX - upEvent.clientX;
+    deltaX = startX - (upEvent.clientX || (e.clientX === 0 ? 0 : e['touches'][0]['clientX']));
 
     if (Math.abs(deltaX) > 200 && Math.abs(deltaX) < document.documentElement.clientWidth * 0.7) {
         if (deltaX > 0) {
