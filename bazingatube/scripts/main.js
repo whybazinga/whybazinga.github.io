@@ -203,7 +203,6 @@ results.addEventListener("mousemove", function (moveEvent) {
 });
 
 function mouseDownFunc(downEvent) {
-    downEvent.preventDefault();
     startX = downEvent.clientX || (downEvent.clientX === 0 ? 0 : downEvent['touches'][0]['clientX']);
     setTimeout(() => pageIndicator.style.transitionDelay = '3s', 0);
     pageIndicator.style.bottom = '40px';
@@ -211,7 +210,6 @@ function mouseDownFunc(downEvent) {
 }
 
 function mouseUpFunc(upEvent) {
-    upEvent.preventDefault();
     setTimeout(() => pageIndicator.style.transitionDelay = '0s', 0);
     pageIndicator.style.bottom = '-20%';
     let deltaX = 0;
