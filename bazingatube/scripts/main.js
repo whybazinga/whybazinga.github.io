@@ -213,7 +213,7 @@ function mouseUpFunc(upEvent) {
     setTimeout(() => pageIndicator.style.transitionDelay = '0s', 0);
     pageIndicator.style.bottom = '-20%';
     let deltaX = 0;
-    deltaX = startX - (upEvent.clientX || (e.clientX === 0 ? 0 : e['touches'][0]['clientX']));
+    deltaX = startX - (upEvent.clientX || (upEvent.clientX === 0 ? 0 : upEvent['changedTouches'][0]['clientX']));
 
     if (Math.abs(deltaX) > 200 && Math.abs(deltaX) < document.documentElement.clientWidth * 0.7) {
         if (deltaX > 0) {
@@ -249,6 +249,7 @@ function mouseUpFunc(upEvent) {
 function changePage(index) {
     if (index === 'init') {
         results.appendChild(pages[0]);
+        currentPage = 0;
     }
     else if (index === -1) {
         currentPage--;
