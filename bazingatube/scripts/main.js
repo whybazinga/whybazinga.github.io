@@ -49,14 +49,6 @@ let savedResponse;
 
 let results = document.getElementById('result-window');
 
-function removeVideos() {
-    nextPage = undefined;
-    while (results.firstChild) {
-        results.removeChild(results.firstChild);
-        pages = [];
-    }
-}
-
 let videosPerPage = 0;
 let nextPage;
 let pages = [];
@@ -116,9 +108,8 @@ let initFlag;
 function buttonClick() {
     if (searchQuery !== input.value) {
         searchQuery = input.value;
-        removeVideos();
+        initializeBasics();
         loadMorePagesToArray();
-        initFlag = true;
     }
 }
 
@@ -186,21 +177,22 @@ let currX = 0;
 let startX;
 let videosPerWindow = Math.floor(document.documentElement.clientWidth / (currVideoWidth + 30));
 let videosLeftToShow = 0;
-let currentPage = 0;
+let currentPage;
+
+function initializeBasics() {
+    results.ontouchstart = mouseDownFunc;
+    results.ontouchend = mouseUpFunc;
+    results.onmousedown = mouseDownFunc;
+    results.onmouseup = mouseUpFunc;
+    initFlag = true;
+    nextPage = undefined;
+    currentPage = 0;
+    pages = [];
+    results.innerHTML = '';
+    pageIndicator.style.opacity = '1';
+}
 
 let pageIndicator = document.getElementById('page-indicator');
-
-results.addEventListener('touchstart', mouseDownFunc)
-
-results.addEventListener('touchend', mouseUpFunc);
-
-results.addEventListener("mousedown", mouseDownFunc);
-
-results.addEventListener("mouseup", mouseUpFunc);
-
-results.addEventListener("mousemove", function (moveEvent) {
-    moveEvent.preventDefault();
-});
 
 function mouseDownFunc(downEvent) {
     startX = downEvent.clientX || (downEvent.clientX === 0 ? 0 : downEvent['touches'][0]['clientX']);
@@ -249,7 +241,6 @@ function mouseUpFunc(upEvent) {
 function changePage(index) {
     if (index === 'init') {
         results.appendChild(pages[0]);
-        currentPage = 0;
     }
     else if (index === -1) {
         currentPage--;
