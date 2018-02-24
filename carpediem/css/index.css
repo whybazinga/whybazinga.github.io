@@ -12,10 +12,11 @@ body{
     width: 100vw;
     height: 100vh;
     min-height: 500px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: Amatic SC;
+    font-family: Amatic SC, Arial, Helvetica, sans-serif;
     color: rgb(177, 143, 105);
 }
 
@@ -80,5 +81,11 @@ footer div h1{
 @media screen and (max-width:500px){
     footer div{
         font-size: 2vw;
+    }
+}
+
+@media screen and (max-height:500px){
+    footer{
+        display: none;
     }
 }
