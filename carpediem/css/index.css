@@ -4,12 +4,13 @@
 }
 html,
 body{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow-x: visible;
 }
 
 #root{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     min-height: 500px;
     min-width: 350px;
@@ -35,10 +36,12 @@ body{
 
 main{
     height: 100%;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     background: rgb(220, 226, 225);
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 footer{
