@@ -90,5 +90,6 @@ a {
 
     .socials-element {
         padding: 0 50px 0 50px;
+        justify-content: space-between;
     }
 }
