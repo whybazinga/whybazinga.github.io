@@ -1,0 +1,29 @@
+{
+  "name": "whybazinga.github.io",
+  "version": "1.0.0",
+  "description": "Hello there",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whybazinga/whybazinga.github.io.git"
+  },
+  "keywords": [],
+  "author": "whybazinga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whybazinga/whybazinga.github.io/issues"
+  },
+  "homepage": "whybazinga.github.io",
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
