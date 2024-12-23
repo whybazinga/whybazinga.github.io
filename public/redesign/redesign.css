@@ -1,0 +1,212 @@
+textarea {
+  border: none;
+  outline: none;
+}
+body {
+  background-color: #008080;
+  z-index: 10;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+main {
+  height: 100vh;
+  width: 100vw;
+}
+/* 
+================================ Desktop Items ================================
+*/
+.desktop-item {
+  height: 64px;
+  width: 64px;
+  max-height: 64px;
+  max-width: 64px;
+  margin: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.desktop-item img {
+  height: 32px;
+  width: 32px;
+}
+.desktop-item span {
+  max-height: inherit;
+  max-width: inherit;
+  margin-top: 6px;
+  font-size: 0.75em;
+  color: white;
+  text-align: center;
+  display: block;
+}
+/* 
+================================ Elements ================================
+*/
+.with-custom-scrollbar::-webkit-scrollbar {
+  background: none;
+  height: 16px;
+  width: 16px;
+}
+.with-custom-scrollbar::-webkit-scrollbar-button {
+  background-color: #c0c0c0;
+  height: 16px;
+  width: 16px;
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+}
+.with-custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  background-image: linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0), linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0);
+  background-size: 2px 2px;
+  background-position: 0 0, 1px 1px;
+}
+.button-1 {
+  background-color: #c0c0c0;
+  padding: 2px;
+  border-radius: 0px;
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+.divider-1 {
+  height: 22px;
+  width: 2px;
+  margin-left: 2px;
+  box-shadow: inset -1px 0px #ffffff, inset 1px 0px #808080;
+}
+.divider-2 {
+  height: 18px;
+  width: 3px;
+  margin-left: 2px;
+  box-shadow: inset 0px -1px #808080, inset 1px 0px #ffffff, inset -1px 0px #808080, inset 1px -1px #808080, inset 0px 1px #ffffff;
+}
+.border-1 {
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+.border-2 {
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+}
+/* 
+================================ Start Bar ================================
+*/
+#start-bar {
+  background-color: #c0c0c0;
+  z-index: 100;
+  height: calc(28px - 2 * 2px - 2px);
+  width: calc(100% - 2 * 2px);
+  padding-top: calc(2px + 2px);
+  padding-bottom: calc(2px);
+  padding-left: calc(2px);
+  padding-right: calc(2px);
+  box-shadow: inset 0 1px #dfdfdf, inset 0 2px #ffffff;
+}
+#start-bar__inner-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+#start-button {
+  height: calc(100% - 2 * 2px - 2 * 1px);
+  width: calc(56px - 2 * 2px - 2 * 2px);
+  padding: calc(2px + 1px) calc(2px + 2px);
+  display: flex;
+  align-items: center;
+}
+#start-button img {
+  height: 16px;
+  width: 16px;
+}
+#start-button__centered-text {
+  width: 100%;
+  font-size: 0.6em;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+/* 
+================================ Windows ================================
+*/
+.window {
+  padding: calc(2px + 2px);
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+  display: block;
+}
+.window__header {
+  height: calc(18px - 2 * 1px);
+  width: calc(100% - 2 * 2px);
+  padding: 1px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.window__header__active {
+  background-image: linear-gradient(to right, #000080, #1084d0);
+}
+.window__header__left-panel {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.window__header__left-panel img {
+  height: 16px;
+  width: 16px;
+  margin-right: 2px;
+}
+.window__header__left-panel span {
+  font-size: 0.6em;
+  font-weight: 600;
+  color: white;
+}
+.window__header__right-panel {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.window__header__right-panel__button {
+  height: calc(14px - 2 * 2px);
+  width: calc(16px - 2 * 2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* TODO: TEMP, REMOVE */
+  font-size: 0.6em;
+}
+.window__header__right-panel__button :last-child {
+  margin-left: 2px;
+}
+.window__field {
+  background-color: white;
+  height: 90%;
+  width: calc(100% - 2 * 2px);
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
+  padding: 2px;
+}
+/* 
+================================ About me - Notepad ================================
+*/
+.window__field__notepad-textarea {
+  height: calc(100% - 2 * 3px);
+  width: calc(100% - 2 * 3px);
+  resize: none;
+  padding: 3px;
+  overflow: scroll;
+}
+#about-me-notepad {
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  height: 500px;
+  width: 600px;
+  background-color: #c0c0c0;
+}
+#about-me-notepad .window__field {
+  margin-top: 5px;
+}
