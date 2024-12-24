@@ -155,7 +155,7 @@ main {
 /* 
 ================================ Start Bar ================================
 */
-#start-bar {
+#taskbar {
   background-color: #c0c0c0;
   z-index: 100;
   height: calc(28px - 2 * 2px - 2px);
@@ -166,7 +166,7 @@ main {
   padding-right: calc(2px);
   box-shadow: inset 0 1px #dfdfdf, inset 0 2px #ffffff;
 }
-#start-bar__inner-container {
+#taskbar__inner-container {
   height: 100%;
   width: 100%;
   display: flex;
