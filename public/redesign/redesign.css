@@ -21,6 +21,17 @@ main {
   height: 100vh;
   width: 100vw;
 }
+/*
+================================ General ================================
+*/
+.prevent-select {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
 /* 
 ================================ Desktop Items ================================
 */
@@ -54,24 +65,68 @@ main {
   background: none;
   height: 16px;
   width: 16px;
+  cursor: default;
 }
 .with-custom-scrollbar::-webkit-scrollbar-button {
-  background-color: #c0c0c0;
   height: 16px;
   width: 16px;
+  background-color: #c0c0c0;
+  border-radius: 0px;
   box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+  cursor: default;
+}
+.with-custom-scrollbar::-webkit-scrollbar-button:active {
+  box-shadow: inset 1px #808080;
+}
+.with-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+  cursor: default;
 }
 .with-custom-scrollbar::-webkit-scrollbar-track {
   background-color: #ffffff;
   background-image: linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0), linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0);
   background-size: 2px 2px;
   background-position: 0 0, 1px 1px;
+  cursor: default;
+}
+.with-custom-scrollbar::-webkit-scrollbar-corner {
+  background-color: #c0c0c0;
 }
 .button-1 {
   background-color: #c0c0c0;
   padding: 2px;
   border-radius: 0px;
   box-shadow: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+.button-1:active {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+}
+.button-2 {
+  background-color: #c0c0c0;
+  border-radius: 0px;
+  box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+.button-2:active {
+  box-shadow: inset 1px #808080;
 }
 .divider-1 {
   height: 22px;
@@ -88,8 +143,14 @@ main {
 .border-1 {
   box-shadow: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
 }
+.border-1__pressed {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+}
 .border-2 {
   box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+}
+.border-2__pressed {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
 }
 /* 
 ================================ Start Bar ================================
@@ -135,7 +196,8 @@ main {
 .window {
   padding: calc(2px + 2px);
   box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .window__header {
   height: calc(18px - 2 * 1px);
@@ -147,6 +209,9 @@ main {
 }
 .window__header__active {
   background-image: linear-gradient(to right, #000080, #1084d0);
+}
+.window__header__passive {
+  background-image: linear-gradient(to right, #808080, #b5b5b5);
 }
 .window__header__left-panel {
   height: 100%;
@@ -182,12 +247,27 @@ main {
 .window__header__right-panel__button :last-child {
   margin-left: 2px;
 }
+.window__file-tabs {
+  background-color: #c0c0c0;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.window__file-tabs__tab {
+  padding-left: 6px;
+  padding-right: 10px;
+}
+.window__file-tabs__tab:first-letter {
+  text-decoration: underline;
+}
 .window__field {
   background-color: white;
-  height: 90%;
+  /*height: 90%;*/
   width: calc(100% - 2 * 2px);
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
   padding: 2px;
+  flex-grow: 1;
 }
 /* 
 ================================ About me - Notepad ================================
@@ -206,7 +286,4 @@ main {
   height: 500px;
   width: 600px;
   background-color: #c0c0c0;
-}
-#about-me-notepad .window__field {
-  margin-top: 5px;
 }

@@ -10,6 +10,7 @@
 @color_grey-dark: rgb(128, 128, 128);
 @color_black: rgb(0, 0, 0);
 
+@scrollbar-size: 16px;
 @scrollbar-tile-texture-size: 1px;
 
 
@@ -46,6 +47,17 @@ body {
 main {
     height: 100vh;
     width: 100vw;
+}
+
+
+/*
+================================ General ================================
+*/
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 /* 
@@ -88,28 +100,47 @@ main {
 ================================ Elements ================================
 */
 
-.with-custom-scrollbar::-webkit-scrollbar {
-    background: none;
+.with-custom-scrollbar
+{
+    &::-webkit-scrollbar {
+        background: none;
+    
+        height: @scrollbar-size;
+        width: @scrollbar-size;
 
-    height: 16px;
-    width: 16px;
-}
+        cursor: default;
+    }
 
-.with-custom-scrollbar::-webkit-scrollbar-button {
-    background-color: @color_grey-main;
+    &::-webkit-scrollbar-button {
+        height: @scrollbar-size;
+        width: @scrollbar-size;
+    
+        .button-2();
 
-    height: 16px;
-    width: 16px;
+        cursor: default;
+    }
 
-    .border-2();
-}
+    &::-webkit-scrollbar-thumb {
+        background-color: @color_grey-main;
 
-.with-custom-scrollbar::-webkit-scrollbar-track {
-    background-color: @color_white;
-    background-image:   linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main),
-                        linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main);
-    background-size: 2px 2px;
-    background-position: 0 0, 1px 1px;
+        .border-2();
+
+        cursor: default;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: @color_white;
+        background-image:   linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main),
+                            linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main);
+        background-size: 2px 2px;
+        background-position: 0 0, 1px 1px;
+
+        cursor: default;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: @color_grey-main;
+    }
 }
 
 
@@ -120,6 +151,25 @@ main {
 
     border-radius: 0px;
     .border-1();
+
+    &:active {
+        .border-1__pressed();
+    }
+
+    .prevent-select();
+}
+
+.button-2 {
+    background-color: @color_grey-main;
+
+    border-radius: 0px;
+    .border-2();
+
+    &:active {
+        box-shadow: inset 1px @color_grey-dark;
+    }
+
+    .prevent-select();
 }
 
 .divider-1 {
@@ -152,11 +202,25 @@ main {
                 inset 2px 2px @color_grey-light;
 }
 
+.border-1__pressed {
+    box-shadow: inset -1px -1px @color_white,
+                inset 1px 1px @color_black,
+                inset -2px -2px @color_grey-light,
+                inset 2px 2px @color_grey-dark;
+}
+
 .border-2 {
     box-shadow: inset -1px -1px @color_black,
                 inset 1px 1px @color_grey-light,
                 inset -2px -2px @color_grey-dark,
                 inset 2px 2px @color_white;
+}
+
+.border-2__pressed {
+    box-shadow: inset -1px -1px @color_white,
+                inset 1px 1px @color_grey-dark,
+                inset -2px -2px @color_grey-light,
+                inset 2px 2px @color_black;
 }
 
 /* 
@@ -222,7 +286,8 @@ main {
 
     .border-2();
 
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .window__header {
@@ -238,6 +303,10 @@ main {
 
 .window__header__active {
     background-image: linear-gradient(to right, rgb(0, 0, 128), rgb(16, 132, 208));
+}
+
+.window__header__passive {
+    background-image: linear-gradient(to right, rgb(128, 128, 128), rgb(181, 181, 181));
 }
 
 .window__header__left-panel {
@@ -284,10 +353,29 @@ main {
     }
 }
 
+.window__file-tabs {
+    background-color: @color_grey-main;
+
+    height: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.window__file-tabs__tab {
+    padding-left: 6px;
+    padding-right: 10px;
+
+    &:first-letter {
+        text-decoration:underline;
+    }
+}
+
 .window__field {
     background-color: white;
 
-    height: 90%;
+    /*height: 90%;*/
     width: calc(100% - 2 * @start-bar_padding-size);
 
     box-shadow: inset -1px -1px @color_white,
@@ -296,6 +384,8 @@ main {
                 inset 2px 2px @color_black;
 
     padding: @start-bar_padding-size;
+
+    flex-grow: 1;
 }
 
 /* 
@@ -323,8 +413,4 @@ main {
     width: @about-me-notepad_window_width;
 
     background-color: @color_grey-main;
-
-    .window__field {
-        margin-top: 5px;
-    }
 }
