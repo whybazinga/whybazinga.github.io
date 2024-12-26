@@ -29,9 +29,9 @@
                         <span>About me - Notepad</span>
                     </div>
                     <div class="window__header__right-panel">
-                        <div class="button-1 window__header__right-panel__button">_</div>
-                        <div class="button-1 window__header__right-panel__button">o</div>
-                        <div class="button-1 window__header__right-panel__button">x</div>
+                        <button class="button-1 window__header__right-panel__button">_</button>
+                        <button class="button-1 window__header__right-panel__button">o</button>
+                        <button class="button-1 window__header__right-panel__button">x</button>
                     </div>
                 </div>
                 <div class="window__file-tabs">
@@ -96,17 +96,28 @@
         <footer>
             <div id="taskbar">
                 <div id="taskbar__inner-container">
-                    <div id="start-button" class="button-1">
-                        <img src="./public/resources/windows-98-start-icon-16x16.png">
-                        <div id="start-button__centered-text">
-                            <span>Start</span>
+                    <div id="taskbar__start-button-area-container">
+                        <button id="start-button" class="button-1">
+                            <img src="./public/resources/windows-98-start-icon-16x16.png">
+                            <b id="start-button__centered-text">Start</b>
+                        </button>
+                        <div class="divider-1"></div>
+                        <div class="divider-2"></div>
+                    </div>
+                    <div id="taskbar__quick-access-area-container">
+                        <div style="width: 77px;"></div>
+                        <div class="divider-1"></div>
+                        <div class="divider-2"></div>
+                    </div>
+                    <div id="taskbar__program-tabs-area-container">
+                        <div></div>
+                    </div>
+                    <div id="taskbar__notification-area-container">
+                        <div class="divider-1"></div>
+                        <div id="taskbar__notification-area">
+                            <div id="taskbar__notification-area__time"></div>
                         </div>
                     </div>
-                    <div class="divider-1"></div>
-                    <div class="divider-2"></div>
-                    <div style="width: 77px;"></div>
-                    <div class="divider-1"></div>
-                    <div class="divider-2"></div>
                 </div>
             </div>
         </footer>

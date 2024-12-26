@@ -160,6 +160,9 @@ textarea {
 .border-2__pressed {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
 }
+.border-3 {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
+}
 /* 
 ================================ Task Bar ================================
 */
@@ -180,6 +183,10 @@ textarea {
   display: flex;
   align-items: center;
 }
+#taskbar__inner-container div {
+  display: flex;
+  align-items: center;
+}
 #start-button {
   height: calc(100% - 2 * 2px - 2 * 1px);
   width: calc(56px - 2 * 2px - 2 * 2px);
@@ -194,7 +201,37 @@ textarea {
 #start-button__centered-text {
   width: 100%;
   font-size: 0.6em;
-  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+#taskbar__program-tabs-area-container {
+  flex-grow: 1;
+}
+#taskbar__notification-area-container {
+  height: 100%;
+}
+#taskbar__notification-area-container .divider-1 {
+  margin-left: 0px;
+  margin-right: 2px;
+}
+#taskbar__notification-area-container #taskbar__notification-area {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
+}
+#taskbar__notification-area-container #taskbar__notification-area .taskbar__notification-area__program-icon {
+  height: 16px;
+  width: 16px;
+  margin-right: 1px;
+}
+#taskbar__notification-area-container #taskbar__notification-area .taskbar__notification-area__program-icon:first-child {
+  margin-left: 2px;
+}
+#taskbar__notification-area-container #taskbar__notification-area #taskbar__notification-area__time {
+  height: 100%;
+  width: 60px;
+  font-size: 0.6em;
   display: flex;
   justify-content: center;
 }

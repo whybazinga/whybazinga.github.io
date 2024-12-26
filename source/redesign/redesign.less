@@ -234,6 +234,11 @@ textarea {
                 inset 2px 2px @color_black;
 }
 
+.border-3 {
+    box-shadow: inset -1px -1px @color_white,
+                inset 1px 1px @color_grey-dark;
+}
+
 /* 
 ================================ Task Bar ================================
 */
@@ -261,6 +266,15 @@ textarea {
 
     display: flex;
     align-items: center;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+#taskbar__start-button-area-container {
+
 }
 
 #start-button {
@@ -282,10 +296,57 @@ textarea {
     width: 100%;
 
     font-size: 0.6em;
-    font-weight: 600;
 
     display: flex;
     justify-content: center;
+}
+
+#taskbar__quick-access-area-container {
+
+}
+
+#taskbar__program-tabs-area-container {
+    flex-grow: 1;
+}
+
+#taskbar__notification-area-container {
+    height: 100%;
+
+    .divider-1 {
+        margin-left: 0px;
+        margin-right: 2px;
+    }
+
+    #taskbar__notification-area {
+        height: 100%;
+
+        display: flex;
+        flex-grow: 1;
+
+        .border-3();
+
+        .taskbar__notification-area__program-icon {
+            height: 16px;
+            width: 16px;
+
+            margin-right: 1px;
+
+            &:first-child {
+                margin-left: 2px;
+            }
+        }
+
+        #taskbar__notification-area__time {
+            height: 100%;
+            width: 60px;
+
+            font-size: 0.6em;
+
+            display: flex;
+            justify-content: center;
+        }
+    }
+
 }
 
 /* 
