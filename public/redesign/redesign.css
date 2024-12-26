@@ -37,6 +37,9 @@ textarea {
   user-select: none;
   /* Standard syntax */
 }
+.hidden {
+  display: none;
+}
 /* 
 ================================ Desktop Items ================================
 */
