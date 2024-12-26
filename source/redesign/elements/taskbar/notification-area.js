@@ -1,12 +1,12 @@
-const notificationAreaElement = document.querySelector("#taskbar__notification-area");
+const notificationAreaContainer = document.querySelector("#taskbar__notification-area");
 
 const notificationAreaTimeElement = document.querySelector("#taskbar__notification-area__time");
 
 const navigationArea = {
     addProgramNotification: (iconPath) => {
-        if (!notificationAreaElement || !notificationAreaTimeElement)
+        if (!notificationAreaContainer || !notificationAreaTimeElement)
         {
-            console.error("No notificationAreaElement or notificationAreaTimeElement!");
+            console.error("addProgramNotification: No notificationAreaContainer or notificationAreaTimeElement!");
             return;
         }
     
@@ -14,7 +14,7 @@ const navigationArea = {
         newIcon.src = iconPath;
         newIcon.classList.add("taskbar__notification-area__program-icon");
     
-        notificationAreaElement.insertBefore(newIcon, notificationAreaTimeElement);
+        notificationAreaContainer.insertBefore(newIcon, notificationAreaTimeElement);
     },
 
 }
