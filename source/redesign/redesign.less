@@ -78,6 +78,14 @@ textarea {
     display: none;
 }
 
+.dotted-background {
+    background-color: @color_white;
+    background-image:   linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main),
+                        linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+}
+
 /* 
 ================================ Desktop Items ================================
 */
@@ -156,11 +164,7 @@ textarea {
     }
 
     &::-webkit-scrollbar-track {
-        background-color: @color_white;
-        background-image:   linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main),
-                            linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main);
-        background-size: 2px 2px;
-        background-position: 0 0, 1px 1px;
+        .dotted-background();
 
         cursor: default;
     }
@@ -179,7 +183,7 @@ textarea {
     border-radius: 0px;
     .border-1();
 
-    &:active {
+    &.pressed, &:active {
         .border-1__pressed();
     }
 
@@ -192,7 +196,7 @@ textarea {
     border-radius: 0px;
     .border-2();
 
-    &:active {
+    &.pressed, &:active {
         box-shadow: inset 1px @color_grey-dark;
     }
 
@@ -214,6 +218,7 @@ textarea {
     width: 3px;
 
     margin-left: 2px;
+    margin-right: 2px;
 
     box-shadow: inset 0px -1px @color_grey-dark,
                 inset 1px 0px @color_white,
@@ -230,7 +235,7 @@ textarea {
 }
 
 .border-1__pressed {
-    box-shadow: inset -1px -1px @color_white,
+    box-shadow+: inset -1px -1px @color_white,
                 inset 1px 1px @color_black,
                 inset -2px -2px @color_grey-light,
                 inset 2px 2px @color_grey-dark;
@@ -244,7 +249,7 @@ textarea {
 }
 
 .border-2__pressed {
-    box-shadow: inset -1px -1px @color_white,
+    box-shadow+: inset -1px -1px @color_white,
                 inset 1px 1px @color_grey-dark,
                 inset -2px -2px @color_grey-light,
                 inset 2px 2px @color_black;
@@ -320,7 +325,39 @@ textarea {
 }
 
 #taskbar__program-tabs-area-container {
+    height: 100%;
+    width: 100%;
+
     flex-grow: 1;
+
+    .taskbar__program-tabs-area__tab {    
+        height: 100%;
+        width: 160px;
+        max-width: 160px;
+
+        margin-right: 2px;
+
+        font-size: 0.6em;
+    
+        .button-1();
+
+        // TODO: FIXME not pretty
+        &.pressed, &:active {
+            .border-1__pressed();
+            .dotted-background();
+
+            box-shadow+: inset 0px 3px white;
+        }
+
+        &:first-child {
+            margin-left: 2px;
+        }
+
+        img {
+            margin-left: 2px;
+            margin-right: 3px;
+        }
+    }
 }
 
 #taskbar__notification-area-container {
