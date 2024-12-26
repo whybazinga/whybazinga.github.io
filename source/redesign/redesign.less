@@ -18,10 +18,9 @@
 @about-me-notepad_window_width: 600px;
 
 
-textarea {
-    border: none;
-    outline: none;
-}
+/*
+================================ General HTML elements ================================
+*/
 
 body {
     background-color: @desktop-background;
@@ -49,12 +48,20 @@ main {
     width: 100vw;
 }
 
+button {
+    all: unset;
+}
+
+textarea {
+    all: unset;
+}
+
 
 /*
-================================ General ================================
+================================ General Mixins ================================
 */
 
-.prevent-select {
+.prevent-text-select {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
@@ -156,7 +163,7 @@ main {
         .border-1__pressed();
     }
 
-    .prevent-select();
+    .prevent-text-select();
 }
 
 .button-2 {
@@ -169,7 +176,7 @@ main {
         box-shadow: inset 1px @color_grey-dark;
     }
 
-    .prevent-select();
+    .prevent-text-select();
 }
 
 .divider-1 {
@@ -224,7 +231,7 @@ main {
 }
 
 /* 
-================================ Start Bar ================================
+================================ Task Bar ================================
 */
 
 #taskbar {

@@ -1,7 +1,6 @@
-textarea {
-  border: none;
-  outline: none;
-}
+/*
+================================ General HTML elements ================================
+*/
 body {
   background-color: #008080;
   z-index: 10;
@@ -21,10 +20,16 @@ main {
   height: 100vh;
   width: 100vw;
 }
+button {
+  all: unset;
+}
+textarea {
+  all: unset;
+}
 /*
-================================ General ================================
+================================ General Mixins ================================
 */
-.prevent-select {
+.prevent-text-select {
   -webkit-user-select: none;
   /* Safari */
   -ms-user-select: none;
@@ -153,7 +158,7 @@ main {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
 }
 /* 
-================================ Start Bar ================================
+================================ Task Bar ================================
 */
 #taskbar {
   background-color: #c0c0c0;
