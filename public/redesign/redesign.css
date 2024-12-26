@@ -75,7 +75,7 @@ textarea {
   height: 32px;
   width: 32px;
 }
-.desktop-item span {
+.desktop-item p {
   max-height: inherit;
   max-width: inherit;
   margin-top: 6px;
@@ -284,9 +284,9 @@ textarea {
 .window__header__left-panel img {
   height: 16px;
   width: 16px;
-  margin-right: 2px;
+  margin-right: 3px;
 }
-.window__header__left-panel span {
+.window__header__left-panel h1 {
   font-size: 0.6em;
   font-weight: 600;
   color: white;
