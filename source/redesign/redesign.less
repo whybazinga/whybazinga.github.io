@@ -14,21 +14,26 @@
 @scrollbar-tile-texture-size: 1px;
 
 
-@about-me-notepad_window_height: 500px;
-@about-me-notepad_window_width: 600px;
-
-
 /*
 ================================ General HTML elements ================================
 */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+}
 
 body {
     background-color: @desktop-background;
 
     z-index: 10;
 
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 
     margin: 0;
     padding: 0;
@@ -44,16 +49,18 @@ body {
 }
 
 main {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 button {
     all: unset;
+    box-sizing: border-box;
 }
 
 textarea {
     all: unset;
+    box-sizing: border-box;
 }
 
 
@@ -74,6 +81,15 @@ textarea {
 /* 
 ================================ Desktop Items ================================
 */
+
+#desktop {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column wrap;
+    flex-grow: 1;
+}
 
 .desktop-item {
     height: 64px;
@@ -246,15 +262,13 @@ textarea {
 #taskbar {
     background-color: @color_grey-main;
 
-    z-index: 100;
-
-    height: calc(28px - 2 * @taskbar_padding-size - 2px);
-    width: calc(100% - 2 * @taskbar_padding-size);
+    height: 28px;
+    width: 100%;
 
     padding-top: calc(@taskbar_padding-size + 2px);
-    padding-bottom: calc(@taskbar_padding-size);
-    padding-left: calc(@taskbar_padding-size);
-    padding-right: calc(@taskbar_padding-size);
+    padding-bottom: @taskbar_padding-size;
+    padding-left: @taskbar_padding-size;
+    padding-right: @taskbar_padding-size;
 
     box-shadow: inset 0 1px @color_grey-light, 
                 inset 0 2px @color_white;
@@ -278,8 +292,8 @@ textarea {
 }
 
 #start-button {
-    height: calc(100% - 2 * @taskbar_padding-size - 2 * 1px);
-    width: calc(56px - 2 * @taskbar_padding-size - 2 * 2px);
+    height: 100%;
+    width: 56px;
 
     padding: calc(@taskbar_padding-size + 1px) calc(@taskbar_padding-size + 2px);
 
@@ -363,8 +377,8 @@ textarea {
 }
 
 .window__header {
-    height: calc(18px - 2 * 1px);
-    width: calc(100% - 2 * 2px);
+    height: 18px;
+    width: 100%;
 
     padding: 1px 2px;
 
@@ -411,8 +425,8 @@ textarea {
 }
 
 .window__header__right-panel__button {
-    height: calc(14px - 2 * @taskbar_padding-size);
-    width: calc(16px - 2 * @taskbar_padding-size);
+    height: 14px;
+    width: 16px;
 
     display: flex;
     justify-content: center;
@@ -420,7 +434,7 @@ textarea {
     /* TODO: TEMP, REMOVE */
     font-size: 0.6em;
 
-    :last-child {
+    &:last-child {
         margin-left: 2px;
     }
 }
@@ -447,8 +461,7 @@ textarea {
 .window__field {
     background-color: white;
 
-    /*height: 90%;*/
-    width: calc(100% - 2 * @taskbar_padding-size);
+    width: 100%;
 
     box-shadow: inset -1px -1px @color_white,
                 inset 1px 1px @color_grey-dark,
@@ -465,8 +478,8 @@ textarea {
 */
 
 .window__field__notepad-textarea {
-    height: calc(100% - 2 * 3px);
-    width: calc(100% - 2 * 3px);
+    height: 100%;
+    width: 100%;
 
     resize: none;
 
@@ -478,11 +491,14 @@ textarea {
 #about-me-notepad {
     position: absolute;
 
-    left: 30%;
+    left: 40%;
     top: 10%;
 
-    height: @about-me-notepad_window_height;
-    width: @about-me-notepad_window_width;
+    height: 50%;
+    width: 40%;
+
+    min-height: 160px;
+    min-width: fit-content;
 
     background-color: @color_grey-main;
 }
