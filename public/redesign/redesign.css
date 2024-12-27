@@ -316,6 +316,10 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-image: linear-gradient(to right, #808080, #b5b5b5);
+}
+.window__header.active {
+  background-image: linear-gradient(to right, #000080, #1084d0);
 }
 .window__header__active {
   background-image: linear-gradient(to right, #000080, #1084d0);

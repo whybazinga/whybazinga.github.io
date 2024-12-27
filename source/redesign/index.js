@@ -1,5 +1,7 @@
 // taskbar
 {
+    notepadWindow.add("about-me-notepad", "About me - Notepad", "./public/resources/windows-98-notepad-icon-16x16.png", "hey");
+
     programTabsArea.addProgramTab("public/resources/windows-98-notepad-icon-16x16.png", "About me - Notepad", true);
 
     navigationArea.addProgramNotification("public/resources/windows-98-mouse-icon-16x16.png");
