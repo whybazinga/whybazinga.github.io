@@ -63,6 +63,10 @@ textarea {
     box-sizing: border-box;
 }
 
+p {
+    all: unset;
+}
+
 
 /*
 ================================ General Mixins ================================
@@ -183,6 +187,10 @@ textarea {
     border-radius: 0px;
     .border-1();
 
+    &.heavy {
+        .border-1__heavy();
+    }
+
     &.pressed, &:active {
         .border-1__pressed();
     }
@@ -228,10 +236,18 @@ textarea {
 }
 
 .border-1 {
-    box-shadow: inset -1px -1px @color_black,
+    box-shadow+: inset -1px -1px @color_black,
                 inset 1px 1px @color_white,
                 inset -2px -2px @color_grey-dark,
                 inset 2px 2px @color_grey-light;
+}
+
+.border-1__heavy {
+    box-shadow+: inset 1px 1px @color_black,
+                inset -2px -2px @color_black,
+                inset 2px 2px @color_white,
+                inset -3px -3px @color_grey-dark,
+                inset 3px 3px @color_grey-light;
 }
 
 .border-1__pressed {
@@ -242,7 +258,7 @@ textarea {
 }
 
 .border-2 {
-    box-shadow: inset -1px -1px @color_black,
+    box-shadow+: inset -1px -1px @color_black,
                 inset 1px 1px @color_grey-light,
                 inset -2px -2px @color_grey-dark,
                 inset 2px 2px @color_white;
@@ -256,7 +272,7 @@ textarea {
 }
 
 .border-3 {
-    box-shadow: inset -1px -1px @color_white,
+    box-shadow+: inset -1px -1px @color_white,
                 inset 1px 1px @color_grey-dark;
 }
 
@@ -293,7 +309,7 @@ textarea {
 }
 
 #taskbar__start-button-area-container {
-
+    height: 100%;
 }
 
 #start-button {
@@ -321,7 +337,7 @@ textarea {
 }
 
 #taskbar__quick-access-area-container {
-
+    height: 100%;
 }
 
 #taskbar__program-tabs-area-container {
@@ -541,6 +557,57 @@ textarea {
 
     min-height: 160px;
     min-width: fit-content;
+}
 
-    background-color: @color_grey-main;
+/* 
+================================ Error ================================
+*/
+
+.error-window {
+    height: 126px;
+    width: 314px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+
+    .error-window__body-container {
+        width: 100%;
+
+        margin-top: 12px;
+
+        display: flex;
+        flex-grow: 1;
+
+        .error-window__body-container__icon {
+            padding-left: 10px;
+            padding-right: 12px;
+        }
+
+        .error-window__body-container__message {
+            padding-top: 2px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    }
+
+    .error-window__ok-button-container {
+        width: 100%;
+
+        padding-top: 14px;
+        padding-bottom: 10px;
+
+        display: flex;
+        justify-content: center;
+
+        .error-window__ok-button {
+            height: 23px;
+            width: 75px;
+
+            text-align: center;
+        }
+    }
 }

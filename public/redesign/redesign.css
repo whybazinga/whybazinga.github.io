@@ -37,6 +37,9 @@ textarea {
   all: unset;
   box-sizing: border-box;
 }
+p {
+  all: unset;
+}
 /*
 ================================ General Mixins ================================
 */
@@ -144,6 +147,9 @@ textarea {
   user-select: none;
   /* Standard syntax */
 }
+.button-1.heavy {
+  box-shadow: inset 1px 1px #000000, inset -2px -2px #000000, inset 2px 2px #ffffff, inset -3px -3px #808080, inset 3px 3px #dfdfdf;
+}
 .button-1.pressed,
 .button-1:active {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
@@ -178,6 +184,9 @@ textarea {
 }
 .border-1 {
   box-shadow: inset -1px -1px #000000, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+.border-1__heavy {
+  box-shadow: inset 1px 1px #000000, inset -2px -2px #000000, inset 2px 2px #ffffff, inset -3px -3px #808080, inset 3px 3px #dfdfdf;
 }
 .border-1__pressed {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
@@ -214,6 +223,9 @@ textarea {
   display: flex;
   align-items: center;
 }
+#taskbar__start-button-area-container {
+  height: 100%;
+}
 #start-button {
   height: 100%;
   width: 56px;
@@ -230,6 +242,9 @@ textarea {
   font-size: 0.6em;
   display: flex;
   justify-content: center;
+}
+#taskbar__quick-access-area-container {
+  height: 100%;
 }
 #taskbar__program-tabs-area-container {
   height: 100%;
@@ -252,6 +267,9 @@ textarea {
   /* IE 10 and IE 11 */
   user-select: none;
   /* Standard syntax */
+}
+#taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab.heavy {
+  box-shadow: inset 1px 1px #000000, inset -2px -2px #000000, inset 2px 2px #ffffff, inset -3px -3px #808080, inset 3px 3px #dfdfdf;
 }
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab.pressed,
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab:active {
@@ -304,6 +322,8 @@ textarea {
 ================================ Windows ================================
 */
 .window {
+  background-color: #c0c0c0;
+  position: absolute;
   padding: calc(2px + 2px);
   box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
   display: flex;
@@ -393,12 +413,47 @@ textarea {
   overflow: scroll;
 }
 #about-me-notepad {
-  position: absolute;
-  left: 40%;
-  top: 10%;
   height: 50%;
   width: 40%;
   min-height: 160px;
   min-width: fit-content;
-  background-color: #c0c0c0;
+}
+/* 
+================================ Error ================================
+*/
+.error-window {
+  height: 126px;
+  width: 314px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+.error-window .error-window__body-container {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  flex-grow: 1;
+}
+.error-window .error-window__body-container .error-window__body-container__icon {
+  padding-left: 10px;
+  padding-right: 12px;
+}
+.error-window .error-window__body-container .error-window__body-container__message {
+  padding-top: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.error-window .error-window__ok-button-container {
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+.error-window .error-window__ok-button-container .error-window__ok-button {
+  height: 23px;
+  width: 75px;
+  text-align: center;
 }
