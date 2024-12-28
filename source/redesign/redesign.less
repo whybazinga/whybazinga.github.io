@@ -79,7 +79,7 @@ p {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .dotted-background {
@@ -563,13 +563,14 @@ p {
 ================================ Error ================================
 */
 
-.error-window {
+#error-window {
     height: 126px;
     width: 314px;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 100;
 
     display: flex;
     flex-direction: column;

@@ -52,7 +52,7 @@ p {
   /* Standard syntax */
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .dotted-background {
   background-color: #ffffff;
@@ -421,38 +421,39 @@ p {
 /* 
 ================================ Error ================================
 */
-.error-window {
+#error-window {
   height: 126px;
   width: 314px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
   display: flex;
   flex-direction: column;
 }
-.error-window .error-window__body-container {
+#error-window .error-window__body-container {
   width: 100%;
   margin-top: 12px;
   display: flex;
   flex-grow: 1;
 }
-.error-window .error-window__body-container .error-window__body-container__icon {
+#error-window .error-window__body-container .error-window__body-container__icon {
   padding-left: 10px;
   padding-right: 12px;
 }
-.error-window .error-window__body-container .error-window__body-container__message {
+#error-window .error-window__body-container .error-window__body-container__message {
   padding-top: 2px;
   padding-left: 4px;
   padding-right: 4px;
 }
-.error-window .error-window__ok-button-container {
+#error-window .error-window__ok-button-container {
   width: 100%;
   padding-top: 14px;
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
 }
-.error-window .error-window__ok-button-container .error-window__ok-button {
+#error-window .error-window__ok-button-container .error-window__ok-button {
   height: 23px;
   width: 75px;
   text-align: center;

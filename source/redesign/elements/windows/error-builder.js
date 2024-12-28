@@ -12,12 +12,11 @@ const errorWindow = {
             withFullscreenButton: false,
         };
 
-        console.log(errorWindowCreateOptions, errorWindowFrameCreateOptions);
-
         const errorWindowBuilder = new WindowBuilder(errorWindowFrameCreateOptions);
 
         const resultErrorWindow = errorWindowBuilder.build();
-        resultErrorWindow.classList.add("error-window");
+        resultErrorWindow.setAttribute("id", "error-window");
+        resultErrorWindow.classList.add("hidden");
 
         const errorMessageContainer = document.createElement("div");
         errorMessageContainer.classList.add("error-window__body-container");
@@ -42,5 +41,31 @@ const errorWindow = {
         resultErrorWindow.appendChild(okButtonContainer);
 
         windowsContainer.appendChild(resultErrorWindow);
+    },
+
+    show: () => {
+        const errorWindow = document.querySelector("#error-window");
+        if (!errorWindow) {
+            return;
+        }
+
+        if (!errorWindow.classList.contains("hidden")) {
+            return;
+        }
+
+        errorWindow.classList.remove("hidden");
+    },
+
+    hide: () => {
+        const errorWindow = document.querySelector("#error-window");
+        if (!errorWindow) {
+            return;
+        }
+
+        if (errorWindow.classList.contains("hidden")) {
+            return;
+        }
+
+        errorWindow.classList.add("hidden");
     }
 }
