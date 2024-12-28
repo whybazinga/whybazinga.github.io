@@ -1,9 +1,18 @@
+const defaultNotepadWindowCreateOptions = {
+    idAttribute: "",
+    title: "",
+    iconPath: "",
+    text: "",
+    style: {
+        top: "0px",
+        left: "0px",
+    },
+}
+
 const notepadWindow = {
-    add: (idAttribute, title, iconPath, text) => {
+    add: (notepadWindowCreateOptions = defaultNotepadWindowCreateOptions) => {
         const notepadWindowFrameCreateOptions = {
-            idAttribute,
-            title,
-            iconPath,
+            ...notepadWindowCreateOptions,
             isActive: true,
             withHideButton: true,
             withFullscreenButton: true,
@@ -21,7 +30,7 @@ const notepadWindow = {
         notepadWindowField.innerHTML =
             `
         <textarea class="window__field__notepad-textarea with-custom-scrollbar">
-                ${text}
+                ${notepadWindowCreateOptions.text}
         </textarea>
         `;
 

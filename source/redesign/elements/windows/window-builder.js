@@ -4,6 +4,10 @@ const defaultWindowFrameCreateOptions = {
     idAttribute: "",
     title: "default",
     iconPath: "",
+    style: {
+        top: "0px",
+        left: "0px",
+    },
     isActive: true,
     withHideButton: true,
     withFullscreenButton: true,
@@ -18,6 +22,11 @@ class WindowBuilder {
         }
 
         newWindowFrame.classList.add("window");
+
+        if (windowFrameCreateOptions.style) {
+            newWindowFrame.style.top = windowFrameCreateOptions.style.top;
+            newWindowFrame.style.left = windowFrameCreateOptions.style.left;
+        }
 
         let optionalIconHtml = "";
         if (windowFrameCreateOptions.iconPath && windowFrameCreateOptions.iconPath.length) {

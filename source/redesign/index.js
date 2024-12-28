@@ -1,6 +1,15 @@
 // taskbar
 {
-    notepadWindow.add("about-me-notepad", "About me - Notepad", "./public/resources/windows-98-notepad-icon-16x16.png", "hey");
+    notepadWindow.add({
+        idAttribute: "about-me-notepad",
+        title: "About me - Notepad",
+        iconPath: "./public/resources/windows-98-notepad-icon-16x16.png",
+        text: "hey",
+        style: {
+            top: "40%",
+            left: "50%",
+        }
+    });
 
     programTabsArea.addProgramTab("public/resources/windows-98-notepad-icon-16x16.png", "About me - Notepad", true);
 
