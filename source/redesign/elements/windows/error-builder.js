@@ -15,7 +15,6 @@ const errorWindow = {
         const errorWindowBuilder = new WindowBuilder(errorWindowFrameCreateOptions);
 
         const resultErrorWindow = errorWindowBuilder.build();
-        resultErrorWindow.setAttribute("id", "error-window");
         resultErrorWindow.classList.add("hidden");
 
         const errorMessageContainer = document.createElement("div");

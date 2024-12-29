@@ -1,6 +1,7 @@
 //desktop
 {
     errorWindow.add({
+        idAttribute: "error-window",
         title: "Error!"
     });
 
