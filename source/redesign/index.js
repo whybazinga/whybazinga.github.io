@@ -19,7 +19,35 @@
         idAttribute: "about-me-notepad",
         title: "About me - Notepad",
         iconPath: "./public/resources/windows-98-notepad-icon-16x16.png",
-        text: "hey",
+        text: `
+
+            Hey there! My name is Alex,
+                        though you might know me as WBZN if you’re into gaming 
+                                    ..and prefer tags over names.
+            
+
+            I am a Software Engineer with experience in Game (5+yrs) and Web (2yr) development.
+
+            Below, you’ll find some of my links, feel free to check them out!
+
+            Linkedin: https://www.linkedin.com/in/whybazinga/
+            Github: https://github.com/whybazinga
+            Mastodon: https://mastodon.gamedev.place/@whybazinga
+
+
+
+
+                        This small website is a spontaneous adventure I started one evening. 
+                        
+                        The only dependency this project has is LessCSS (https://lesscss.org/),
+                        that totally saved me from going insane writing in pure CSS.
+                        
+                        That’s not to say that everything else is straightforward—it’s been a long time
+                        since I’ve written in JavaScript! 
+                        
+                        However, it was a fun experience, and that’s what matters most.
+
+        `,
         style: {
             top: "13%",
             left: "40%",

@@ -410,6 +410,7 @@ p {
   width: 100%;
   resize: none;
   padding: 3px;
+  white-space: pre-wrap;
   overflow: scroll;
 }
 #about-me-notepad {
