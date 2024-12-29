@@ -405,7 +405,7 @@ p {
 /* 
 ================================ About me - Notepad ================================
 */
-.window__field__notepad-textarea {
+.notepad .window__field__notepad-textarea {
   height: 100%;
   width: 100%;
   resize: none;
@@ -413,8 +413,8 @@ p {
   overflow: scroll;
 }
 #about-me-notepad {
-  height: 50%;
-  width: 40%;
+  height: 70%;
+  width: 50%;
   min-height: 160px;
   min-width: fit-content;
 }

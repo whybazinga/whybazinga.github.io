@@ -35,6 +35,8 @@ const notepadWindow = {
         `;
 
         const resultNotepadWindow = notepadWindowBuilder.build();
+        resultNotepadWindow.classList.add("notepad");
+
         resultNotepadWindow.appendChild(notepadWindowField);
 
         windowsContainer.appendChild(resultNotepadWindow);

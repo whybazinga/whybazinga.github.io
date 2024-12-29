@@ -11,8 +11,8 @@
         iconPath: "./public/resources/windows-98-notepad-icon-16x16.png",
         text: "hey",
         style: {
-            top: "40%",
-            left: "50%",
+            top: "13%",
+            left: "40%",
         }
     });
 }
