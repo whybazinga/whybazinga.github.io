@@ -5,6 +5,16 @@
         title: "Error!"
     });
 
+    imageViewer.add({
+        idAttribute: "image-viewer-window",
+        title: "Image Viewer",
+        imageSrc: "./public/resources/image-viewer-content-256x128.png",
+        style: {
+            top: "7%",
+            left: "13%",
+        }
+    });
+
     notepadWindow.add({
         idAttribute: "about-me-notepad",
         title: "About me - Notepad",

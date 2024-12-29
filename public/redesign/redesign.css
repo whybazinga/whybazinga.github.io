@@ -458,3 +458,16 @@ p {
   width: 75px;
   text-align: center;
 }
+/* 
+================================ Image Viewer ================================
+*/
+#image-viewer-window {
+  height: 200px;
+  width: 300px;
+}
+#image-viewer-window .window__field {
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
