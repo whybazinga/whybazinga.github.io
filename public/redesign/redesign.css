@@ -275,6 +275,7 @@ p {
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab:active {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
 }
+#taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab.active,
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab.pressed,
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab:active {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #000000, inset -2px -2px #dfdfdf, inset 2px 2px #808080, inset 0px 3px white;
@@ -329,7 +330,10 @@ p {
   display: flex;
   flex-direction: column;
 }
-.window__header {
+.window.active .window__header {
+  background-image: linear-gradient(to right, #000080, #1084d0);
+}
+.window .window__header {
   height: 18px;
   width: 100%;
   padding: 1px 2px;
@@ -337,9 +341,6 @@ p {
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(to right, #808080, #b5b5b5);
-}
-.window__header.active {
-  background-image: linear-gradient(to right, #000080, #1084d0);
 }
 .window__header__active {
   background-image: linear-gradient(to right, #000080, #1084d0);
@@ -413,7 +414,7 @@ p {
   white-space: pre-wrap;
   overflow: scroll;
 }
-#about-me-notepad {
+#window__about-me-notepad {
   height: 70%;
   width: 50%;
   min-height: 160px;

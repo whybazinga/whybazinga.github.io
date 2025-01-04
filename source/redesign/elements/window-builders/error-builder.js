@@ -7,7 +7,6 @@ const errorWindow = {
         const errorWindowFrameCreateOptions = {
             ...defaultErrorWindowCreateOptions,
             ...errorWindowCreateOptions,
-            isActive: true,
             withHideButton: false,
             withFullscreenButton: false,
         };

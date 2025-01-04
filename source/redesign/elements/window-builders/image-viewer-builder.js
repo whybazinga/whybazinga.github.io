@@ -7,7 +7,6 @@ const imageViewer = {
         const imageViewerFrameCreateOptions = {
             ...defaultimageViewerCreateOptions,
             ...imageViewerCreateOptions,
-            isActive: false,
             withHideButton: true,
             withFullscreenButton: true,
         };

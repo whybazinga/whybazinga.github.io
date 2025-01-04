@@ -8,7 +8,6 @@ const defaultWindowFrameCreateOptions = {
         top: "0px",
         left: "0px",
     },
-    isActive: true,
     withHideButton: true,
     withFullscreenButton: true,
 }
@@ -45,7 +44,7 @@ class WindowBuilder {
 
         const windowFrameHeaderHtml =
             `
-        <div class="window__header ${windowFrameCreateOptions.isActive ? "active" : ""}">
+        <div class="window__header">
             <div class="window__header__left-panel">
                 ${optionalIconHtml}
                 <h1>${windowFrameCreateOptions.title}</h1>

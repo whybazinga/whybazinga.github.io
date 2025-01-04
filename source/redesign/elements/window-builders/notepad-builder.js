@@ -10,10 +10,9 @@ const defaultNotepadWindowCreateOptions = {
 }
 
 const notepadWindow = {
-    add: (notepadWindowCreateOptions = defaultNotepadWindowCreateOptions) => {
+    build: (notepadWindowCreateOptions = defaultNotepadWindowCreateOptions) => {
         const notepadWindowFrameCreateOptions = {
             ...notepadWindowCreateOptions,
-            isActive: true,
             withHideButton: true,
             withFullscreenButton: true,
         };
@@ -39,6 +38,6 @@ const notepadWindow = {
 
         resultNotepadWindow.appendChild(notepadWindowField);
 
-        windowsContainer.appendChild(resultNotepadWindow);
-    }
+        return resultNotepadWindow;
+    },
 }

@@ -358,7 +358,7 @@ p {
         .button-1();
 
         // TODO: FIXME not pretty
-        &.pressed, &:active {
+        &.active, &.pressed, &:active {
             .border-1__pressed();
             .dotted-background();
 
@@ -431,23 +431,23 @@ p {
 
     display: flex;
     flex-direction: column;
-}
-
-.window__header {
-    height: 18px;
-    width: 100%;
-
-    padding: 1px 2px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &.active {
+    
+    &.active .window__header {
         .window__header__active();
     }
 
-    .window__header__passive();
+    .window__header {
+        height: 18px;
+        width: 100%;
+
+        padding: 1px 2px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .window__header__passive();
+    }
 }
 
 .window__header__active {
@@ -556,7 +556,7 @@ p {
 
 
 
-#about-me-notepad {
+#window__about-me-notepad {
     height: 70%;
     width: 50%;
 

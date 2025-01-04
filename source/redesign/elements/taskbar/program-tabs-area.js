@@ -1,19 +1,10 @@
 const programTabsContainer = document.querySelector("#taskbar__program-tabs-area-container");
 
 const programTabsArea = {
-    addProgramTab: (iconPath, title, isForcePressed) => {
-        if (!programTabsContainer)
-        {
-            console.error("addProgramTab: No programTabsContainer!");
-            return;
-        }
-
+    buildTab: (idAttribute, iconPath, title) => {
         const tab = document.createElement("div");
         tab.classList.add("taskbar__program-tabs-area__tab");
-        if (isForcePressed)
-        {
-            tab.classList.add("pressed");
-        }
+        tab.id = idAttribute;
 
         tab.innerHTML = 
         `
@@ -22,7 +13,7 @@ const programTabsArea = {
                 ${title}
             </p>
         `;
-    
-        programTabsContainer.appendChild(tab);
+
+        return tab;
     },
 }
