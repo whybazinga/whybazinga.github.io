@@ -8,7 +8,7 @@ const programTabsArea = {
 
         tab.innerHTML = 
         `
-            <img src="${iconPath}">
+            ${iconPath && iconPath.length ? `<img src="${iconPath}">` : ""}
             <p>
                 ${title}
             </p>

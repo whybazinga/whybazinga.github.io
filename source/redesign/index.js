@@ -1,9 +1,6 @@
 //desktop
 {
-    errorWindow.add({
-        idAttribute: "error-window",
-        title: "Error!"
-    });
+    
 }
 
 // taskbar
@@ -11,23 +8,6 @@
     navigationArea.addProgramNotification("public/resources/windows-98-mouse-icon-16x16.png");
     navigationArea.addProgramNotification("public/resources/windows-98-loudspeaker_muted-icon-16x16.png");
 }
-
-// buttons binding
-{
-    const casualButtons = document.querySelectorAll("button:not(.error-window__ok-button)");
-    casualButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            console.log("!");
-            errorWindow.show();
-        });
-    })
-
-    const errorButton = document.querySelector(".error-window__ok-button");
-    errorButton.addEventListener("click", () => {
-        errorWindow.hide();
-    });
-}
-
 
 const aboutMeNotepad = new Program({ 
     id: "about-me-notepad",
@@ -81,7 +61,7 @@ const aboutMeNotepadTaskbarProgramTab = programTabsArea.buildTab(
 aboutMeNotepad.windowElement = aboutMeNotepadWindow;
 aboutMeNotepad.taskbarTabElement = aboutMeNotepadTaskbarProgramTab;
 
-aboutMeNotepad.addProgram();
+aboutMeNotepad.initialize();
 aboutMeNotepad.setActive(true);
 
 const myImageViewer = new Program({
@@ -108,4 +88,45 @@ const myImageViewerTaskbarProgramTab = programTabsArea.buildTab(
 myImageViewer.windowElement = myImageViewerWindow;
 myImageViewer.taskbarTabElement = myImageViewerTaskbarProgramTab;
 
-myImageViewer.addProgram();
+myImageViewer.initialize();
+
+
+const myError = new Program({
+    id: "error",
+    autoOpen: false,
+});
+
+const myErrorWindow = errorWindow.build({
+    idAttribute: myError.getWindowId(),
+    title: "Error!"
+});
+
+const myErrorTaskbarProgramTab = programTabsArea.buildTab(
+    myError.getTaskbarTabId(),
+    null,
+    "Error!"
+);
+
+myError.windowElement = myErrorWindow;
+myError.taskbarTabElement = myErrorTaskbarProgramTab;
+
+myError.initialize();
+
+
+
+
+
+// buttons binding
+{
+    const casualButtons = document.querySelectorAll("button:not(.error-window__ok-button)");
+    casualButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            myError.open();
+        });
+    })
+
+    const errorButton = document.querySelector(".error-window__ok-button");
+    errorButton.addEventListener("click", () => {
+        myError.close();
+    });
+}

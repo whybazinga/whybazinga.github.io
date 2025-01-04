@@ -10,12 +10,19 @@ class Program {
     #taskbarTabId;
     taskbarTabElement;
 
+    autoOpen = false;
+    #isOpen = false;
+
     constructor(payload) {
         this.id = payload.id;
         this.#isActive = payload.isActive;
 
         this.#windowId = `window__${this.id}`;
         this.#taskbarTabId = `taskbar__program-tab__${this.id}`;
+
+        console.log("autoOpen" in payload)
+
+        this.autoOpen = "autoOpen" in payload ? payload.autoOpen : true;
     }
 
     getWindowId() {
@@ -34,9 +41,15 @@ class Program {
         return document.querySelector(`#${this.#taskbarTabId}`);
     }
 
-    addProgram() {
+    initialize() {
+        this.windowElement.classList.add("hidden");
         windowsContainer.appendChild(this.windowElement);
+        this.taskbarTabElement.classList.add("hidden");
         programTabsContainer.appendChild(this.taskbarTabElement);
+
+        if (this.autoOpen) {
+            this.open();
+        }
     }
 
     setActive(newIsActive) {
@@ -53,6 +66,27 @@ class Program {
             this.#getWindowElement().classList.remove("active");
             this.#getTaskbarTabElement().classList.remove("active");
         }
-        
+    }
+
+    open() {
+        if (this.#isOpen) {
+            return;
+        }
+
+        this.#getWindowElement().classList.remove("hidden");
+        this.#getTaskbarTabElement().classList.remove("hidden");
+
+        this.#isOpen = true;
+    }
+
+    close() {
+        if (!this.#isOpen) {
+            return;
+        }
+
+        this.#getWindowElement().classList.add("hidden");
+        this.#getTaskbarTabElement().classList.add("hidden");
+
+        this.#isOpen = false;
     }
 }

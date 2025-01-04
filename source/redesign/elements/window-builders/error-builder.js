@@ -3,7 +3,7 @@ const defaultErrorWindowCreateOptions = {
 }
 
 const errorWindow = {
-    add: (errorWindowCreateOptions) => {
+    build: (errorWindowCreateOptions) => {
         const errorWindowFrameCreateOptions = {
             ...defaultErrorWindowCreateOptions,
             ...errorWindowCreateOptions,
@@ -21,7 +21,7 @@ const errorWindow = {
         errorMessageContainer.innerHTML =
         `
             <div class="error-window__body-container__icon">
-                <img src="./public/resources/windows-98-msg_error-icon-32x32.png">
+                <img src="./public/resources/windows-98-msg-error-icon-32x32.png">
             </div>
             <div class="error-window__body-container__message">
                 <p>
@@ -38,11 +38,11 @@ const errorWindow = {
 
         resultErrorWindow.appendChild(okButtonContainer);
 
-        windowsContainer.appendChild(resultErrorWindow);
+        return resultErrorWindow;
     },
 
     show: () => {
-        const errorWindow = document.querySelector("#error-window");
+        const errorWindow = document.querySelector("#window__error");
         if (!errorWindow) {
             return;
         }
@@ -55,7 +55,7 @@ const errorWindow = {
     },
 
     hide: () => {
-        const errorWindow = document.querySelector("#error-window");
+        const errorWindow = document.querySelector("#window__error");
         if (!errorWindow) {
             return;
         }
