@@ -4,16 +4,6 @@
         idAttribute: "error-window",
         title: "Error!"
     });
-
-    imageViewer.add({
-        idAttribute: "image-viewer-window",
-        title: "Image Viewer",
-        imageSrc: "./public/resources/image-viewer-content-256x128.png",
-        style: {
-            top: "7%",
-            left: "13%",
-        }
-    });
 }
 
 // taskbar
@@ -93,3 +83,29 @@ aboutMeNotepad.taskbarTabElement = aboutMeNotepadTaskbarProgramTab;
 
 aboutMeNotepad.addProgram();
 aboutMeNotepad.setActive(true);
+
+const myImageViewer = new Program({
+    id: "my-image-viewer"
+});
+
+const myImageViewerWindow = imageViewer.build({
+    idAttribute: myImageViewer.getWindowId(),
+    title: "Image Viewer",
+    iconPath: "./public/resources/windows-98-utopia-smiley-icon-16x16.png",
+    imageSrc: "./public/resources/image-viewer-content-256x128.png",
+    style: {
+        top: "7%",
+        left: "13%",
+    }
+});
+
+const myImageViewerTaskbarProgramTab = programTabsArea.buildTab(
+    myImageViewer.getTaskbarTabId(),
+    "./public/resources/windows-98-utopia-smiley-icon-16x16.png",
+    "Image Viewer"
+);
+
+myImageViewer.windowElement = myImageViewerWindow;
+myImageViewer.taskbarTabElement = myImageViewerTaskbarProgramTab;
+
+myImageViewer.addProgram();

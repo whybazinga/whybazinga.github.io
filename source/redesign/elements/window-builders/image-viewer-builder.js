@@ -3,7 +3,7 @@ const defaultimageViewerCreateOptions = {
 }
 
 const imageViewer = {
-    add: (imageViewerCreateOptions) => {
+    build: (imageViewerCreateOptions) => {
         const imageViewerFrameCreateOptions = {
             ...defaultimageViewerCreateOptions,
             ...imageViewerCreateOptions,
@@ -25,6 +25,6 @@ const imageViewer = {
 
         resultimageViewer.appendChild(imageField);
 
-        windowsContainer.appendChild(resultimageViewer);
+        return resultimageViewer;
     }
 }

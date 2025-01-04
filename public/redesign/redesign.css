@@ -463,11 +463,11 @@ p {
 /* 
 ================================ Image Viewer ================================
 */
-#image-viewer-window {
+#window__my-image-viewer {
   height: 200px;
   width: 300px;
 }
-#image-viewer-window .window__field {
+#window__my-image-viewer .window__field {
   background-color: #c0c0c0;
   display: flex;
   justify-content: center;
