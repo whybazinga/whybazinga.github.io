@@ -113,7 +113,10 @@ myError.taskbarTabElement = myErrorTaskbarProgramTab;
 myError.initialize();
 
 
-
+const manager = new ProgramManager();
+manager.registerProgram(aboutMeNotepad);
+manager.registerProgram(myImageViewer);
+manager.registerError(myError);
 
 
 // buttons binding
