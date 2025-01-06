@@ -62,7 +62,6 @@ aboutMeNotepad.windowElement = aboutMeNotepadWindow;
 aboutMeNotepad.taskbarTabElement = aboutMeNotepadTaskbarProgramTab;
 
 aboutMeNotepad.initialize();
-aboutMeNotepad.setActive(true);
 
 const myImageViewer = new Program({
     id: "my-image-viewer"

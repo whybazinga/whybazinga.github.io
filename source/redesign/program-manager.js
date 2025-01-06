@@ -16,24 +16,62 @@ class ProgramManager {
     }
 
     registerProgram(program) {
-        program.getWindow().addEventListener("click", this.#createClickListener(program));
-        program.getTaskbarTab().addEventListener("click", this.#createClickListener(program));
+        program.getWindow().addEventListener("click", this.#createWindowClickListener(program));
+        program.getTaskbarTab().addEventListener("click", this.#createTaskbarTabClickListener(program));
 
         this.#registeredPrograms.push(program);
     }
 
-    #createClickListener(owningProgram) {
+    #isShowingError() {
+        return !!this.#currentError;
+    }
+
+    #switchActivity(fromProgram, toProgram) {
+        if (fromProgram) {
+            fromProgram.setActive(false);
+        }
+
+        if (toProgram) {
+            toProgram.setActive(true);
+        }
+    }
+
+    #createWindowClickListener(owningProgram) {
         return (event) => {
+            if (this.#isShowingError()) {
+                return;
+            }
+
             if (this.#activeProgram == owningProgram) {
                 return;
             }
 
-            if (this.#activeProgram) {
-                this.#activeProgram.setActive(false);
+            this.#switchActivity(this.#activeProgram, owningProgram);
+            this.#activeProgram = owningProgram;
+        };
+    }
+
+    #createTaskbarTabClickListener(owningProgram) {
+        return (event) => {
+            if (this.#isShowingError()) {
+                return;
             }
 
+            if (this.#activeProgram == owningProgram && !this.#activeProgram.isHidden()) {
+                this.#switchActivity(this.#activeProgram, null);
+                this.#activeProgram.hide();
+
+                this.#activeProgram = null;
+
+                return;
+            }
+
+            this.#switchActivity(this.#activeProgram, owningProgram);
             this.#activeProgram = owningProgram;
-            this.#activeProgram.setActive(true);
+
+            if (this.#activeProgram.isHidden()) {
+                this.#activeProgram.unhide();
+            }
         };
     }
 
@@ -43,9 +81,9 @@ class ProgramManager {
                 console.error(`Trying to show error ${owningError} while error {}`)
             }
 
+            this.#switchActivity(this.#activeProgram, owningError);
+            this.#activeProgram = null;
             this.#currentError = owningError;
-
-            this.#currentError.setActive(true);
         };
     }
 

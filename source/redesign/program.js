@@ -13,6 +13,8 @@ class Program {
     autoOpen = false;
     #isOpen = false;
 
+    #isHidden = false;
+
     // args: this Program
     onOpenDelegate;
     // args: this Program
@@ -106,5 +108,39 @@ class Program {
         this.#isOpen = false;
 
         this.onCloseDelegate.broadcast(this);
+    }
+
+    isHidden() {
+        return this.#isHidden;
+    }
+
+    hide() {
+        if (!this.#isOpen) {
+            console.error(`Can't hide closed window ${this}`);
+            return;
+        }
+
+        if (this.#isHidden) {
+            return;
+        }
+
+        this.#getWindowElement().classList.add("hidden");
+
+        this.#isHidden = true;
+    }
+
+    unhide() {
+        if (!this.#isOpen) {
+            console.error(`Can't unhide closed window ${this}`);
+            return;
+        }
+
+        if (!this.#isHidden) {
+            return;
+        }
+
+        this.#getWindowElement().classList.remove("hidden");
+
+        this.#isHidden = false;
     }
 }
