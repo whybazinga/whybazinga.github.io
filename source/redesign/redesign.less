@@ -473,9 +473,11 @@ p {
     }
 
     h1 {
-        font-size: 0.6em;
+        font-size: 0.7em;
         font-weight: 600;
         color: white;
+
+        .prevent-text-select();
     }
 }
 
@@ -507,6 +509,8 @@ p {
 
     height: 20px;
 
+    font-size: 0.9em;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -516,8 +520,14 @@ p {
     padding-left: 6px;
     padding-right: 10px;
 
-    &:first-letter {
+    &::first-letter {
         text-decoration:underline;
+    }
+
+    .prevent-text-select();
+
+    &.pressed, &:active, &:hover {
+        .border-3();
     }
 }
 

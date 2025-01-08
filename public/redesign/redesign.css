@@ -360,9 +360,15 @@ p {
   margin-right: 3px;
 }
 .window__header__left-panel h1 {
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-weight: 600;
   color: white;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 .window__header__right-panel {
   height: 100%;
@@ -385,6 +391,7 @@ p {
 .window__file-tabs {
   background-color: #c0c0c0;
   height: 20px;
+  font-size: 0.9em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -392,9 +399,20 @@ p {
 .window__file-tabs__tab {
   padding-left: 6px;
   padding-right: 10px;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
-.window__file-tabs__tab:first-letter {
+.window__file-tabs__tab::first-letter {
   text-decoration: underline;
+}
+.window__file-tabs__tab.pressed,
+.window__file-tabs__tab:active,
+.window__file-tabs__tab:hover {
+  box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
 }
 .window__field {
   background-color: white;
