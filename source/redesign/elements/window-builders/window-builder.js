@@ -34,12 +34,25 @@ class WindowBuilder {
 
         let optionalHideButtonHtml = "";
         if (windowFrameCreateOptions.withHideButton) {
-            optionalHideButtonHtml = `<button class="button-1 window__header__right-panel__button">_</button>`;
+            optionalHideButtonHtml = `
+            <button class="button-1 window__header__right-panel__button">
+                <svg viewBox="0 0 12 10">
+                    <rect x="2" y="7" width="6" height="2" fill="currentColor"></rect>
+                </svg>
+            </button>
+            `;
         }
 
         let optionalFullscreenButtonHtml = "";
-        if (windowFrameCreateOptions.withHideButton) {
-            optionalFullscreenButtonHtml = `<button class="button-1 window__header__right-panel__button">o</button>`;
+        if (windowFrameCreateOptions.withFullscreenButton) {
+            optionalFullscreenButtonHtml = `
+            <button class="button-1 window__header__right-panel__button">
+                <svg viewBox="0 0 12 10">
+                    <rect x="1" y="0" width="9" height="9" fill="none" stroke="black" stroke-width="1"></rect>
+                    <line x1="1" y1="1" x2="10" y2="1" stroke="black" stroke-width="1"></line>
+                </svg>
+            </button>
+            `;
         }
 
         const windowFrameHeaderHtml =
@@ -52,7 +65,21 @@ class WindowBuilder {
             <div class="window__header__right-panel">
                 ${optionalHideButtonHtml}
                 ${optionalFullscreenButtonHtml}
-                <button class="button-1 window__header__right-panel__button">x</button>
+                <button class="button-1 window__header__right-panel__button">
+                    <svg viewBox="0 0 12 10">
+                        <line x1="2" y1="2" x2="4" y2="2" stroke="black" stroke-width="1"></line>
+                        <line x1="8" y1="2" x2="10" y2="2" stroke="black" stroke-width="1"></line>
+                        <line x1="3" y1="3" x2="5" y2="3" stroke="black" stroke-width="1"></line>
+                        <line x1="7" y1="3" x2="9" y2="3" stroke="black" stroke-width="1"></line>
+                        <line x1="4" y1="4" x2="8" y2="4" stroke="black" stroke-width="1"></line>
+                        <line x1="5" y1="5" x2="7" y2="5" stroke="black" stroke-width="1"></line>
+                        <line x1="4" y1="6" x2="8" y2="6" stroke="black" stroke-width="1"></line>
+                        <line x1="3" y1="7" x2="5" y2="7" stroke="black" stroke-width="1"></line>
+                        <line x1="7" y1="7" x2="9" y2="7" stroke="black" stroke-width="1"></line>
+                        <line x1="2" y1="8" x2="4" y2="8" stroke="black" stroke-width="1"></line>
+                        <line x1="8" y1="8" x2="10" y2="8" stroke="black" stroke-width="1"></line>
+                    </svg>
+                </button>
             </div>
         </div>
         `;
