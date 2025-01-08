@@ -46,7 +46,7 @@ class WindowBuilder {
         let optionalFullscreenButtonHtml = "";
         if (windowFrameCreateOptions.withFullscreenButton) {
             optionalFullscreenButtonHtml = `
-            <button class="button-1 window__header__right-panel__button">
+            <button class="button-1 window__header__right-panel__button not-implemented">
                 <svg viewBox="0 0 12 10">
                     <rect x="1" y="0" width="9" height="9" fill="none" stroke="black" stroke-width="1"></rect>
                     <line x1="1" y1="1" x2="10" y2="1" stroke="black" stroke-width="1"></line>
@@ -65,7 +65,7 @@ class WindowBuilder {
             <div class="window__header__right-panel">
                 ${optionalHideButtonHtml}
                 ${optionalFullscreenButtonHtml}
-                <button class="button-1 window__header__right-panel__button">
+                <button class="button-1 window__header__right-panel__button not-implemented">
                     <svg viewBox="0 0 12 10">
                         <line x1="2" y1="2" x2="4" y2="2" stroke="black" stroke-width="1"></line>
                         <line x1="8" y1="2" x2="10" y2="2" stroke="black" stroke-width="1"></line>
@@ -110,8 +110,9 @@ class WindowFileTabsBuilder {
     }
 
     addTab(title) {
-        const newTab = document.createElement("div");
+        const newTab = document.createElement("button");
         newTab.classList.add("window__file-tabs__tab");
+        newTab.classList.add("not-implemented");
         newTab.innerHTML = title;
 
         this.tabsContainer.appendChild(newTab);

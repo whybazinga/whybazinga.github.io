@@ -120,7 +120,7 @@ manager.registerError(myError);
 
 // buttons binding
 {
-    const casualButtons = document.querySelectorAll("button:not(.error-window__ok-button)");
+    const casualButtons = document.querySelectorAll("button.not-implemented");
     casualButtons.forEach((button) => {
         button.addEventListener("click", () => {
             myError.open();
