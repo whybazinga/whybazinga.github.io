@@ -1,13 +1,10 @@
-//desktop
-{
-    
-}
-
 // taskbar
 {
     navigationArea.addProgramNotification("public/resources/windows-98-mouse-icon-16x16.png");
     navigationArea.addProgramNotification("public/resources/windows-98-loudspeaker_muted-icon-16x16.png");
 }
+
+// About Me Notepad
 
 const aboutMeNotepad = new Program({ 
     id: "about-me-notepad",
@@ -20,8 +17,7 @@ const aboutMeNotepadWindow = notepadWindow.build({
     text: `
 
         Hey there! My name is Alex,
-                    though you might know me as WBZN if you’re into gaming 
-                                ..and prefer tags over names.
+                    ...or WBZN if you prefer tags over names :)
         
 
         I am a Software Engineer with experience in Game (5+yrs) and Web (2yr) development.
@@ -63,6 +59,8 @@ aboutMeNotepad.taskbarTabElement = aboutMeNotepadTaskbarProgramTab;
 
 aboutMeNotepad.initialize();
 
+// My Image Viewer
+
 const myImageViewer = new Program({
     id: "my-image-viewer"
 });
@@ -89,6 +87,7 @@ myImageViewer.taskbarTabElement = myImageViewerTaskbarProgramTab;
 
 myImageViewer.initialize();
 
+// Error
 
 const myError = new Program({
     id: "error",
@@ -111,6 +110,7 @@ myError.taskbarTabElement = myErrorTaskbarProgramTab;
 
 myError.initialize();
 
+// Manager registration
 
 const manager = new ProgramManager();
 manager.registerProgram(aboutMeNotepad);
