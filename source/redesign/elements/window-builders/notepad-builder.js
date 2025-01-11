@@ -28,7 +28,7 @@ const notepadWindow = {
         notepadWindowField.classList.add("window__field");
         notepadWindowField.innerHTML =
             `
-        <textarea class="window__field__notepad-textarea with-custom-scrollbar">
+        <textarea class="with-custom-scrollbar">
                 ${notepadWindowCreateOptions.text}
         </textarea>
         `;

@@ -9,12 +9,16 @@ const navigationArea = {
             console.error("addProgramNotification: No notificationAreaContainer or notificationAreaTimeElement!");
             return;
         }
+
+        const button = document.createElement("button");
+        button.classList.add("taskbar__notification-area__program-icon")
+        button.classList.add("not-implemented");
+
+        button.innerHTML = `
+            <img src="${iconPath}" height="16px" width="16px">
+        `;
     
-        const newIcon = new Image(16, 16);
-        newIcon.src = iconPath;
-        newIcon.classList.add("taskbar__notification-area__program-icon");
-    
-        notificationAreaContainer.insertBefore(newIcon, notificationAreaTimeElement);
+        notificationAreaContainer.insertBefore(button, notificationAreaTimeElement);
     },
 
 }

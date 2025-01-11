@@ -5,6 +5,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  image-rendering: pixelated;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: -0.1px;
 }
 html {
   height: 100vh;
@@ -20,8 +25,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: Arial, sans-serif;
-  font-weight: 300;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -88,9 +91,13 @@ p {
   max-height: inherit;
   max-width: inherit;
   margin-top: 6px;
-  font-size: 0.75em;
   color: white;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  cursor: default;
   display: block;
 }
 /* 
@@ -207,6 +214,7 @@ p {
   background-color: #c0c0c0;
   height: 28px;
   width: 100%;
+  z-index: 50;
   padding-top: calc(2px + 2px);
   padding-bottom: 2px;
   padding-left: 2px;
@@ -239,7 +247,7 @@ p {
 }
 #start-button__centered-text {
   width: 100%;
-  font-size: 0.6em;
+  font-weight: 600;
   display: flex;
   justify-content: center;
 }
@@ -256,7 +264,6 @@ p {
   width: 160px;
   max-width: 160px;
   margin-right: 2px;
-  font-size: 0.6em;
   background-color: #c0c0c0;
   padding: 2px;
   border-radius: 0px;
@@ -283,6 +290,7 @@ p {
   background-image: linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0), linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0);
   background-size: 2px 2px;
   background-position: 0 0, 1px 1px;
+  font-weight: 600;
 }
 #taskbar__program-tabs-area-container .taskbar__program-tabs-area__tab:first-child {
   margin-left: 2px;
@@ -315,7 +323,6 @@ p {
 #taskbar__notification-area-container #taskbar__notification-area #taskbar__notification-area__time {
   height: 100%;
   width: 60px;
-  font-size: 0.6em;
   display: flex;
   justify-content: center;
 }
@@ -325,10 +332,14 @@ p {
 .window {
   background-color: #c0c0c0;
   position: absolute;
+  z-index: 60;
   padding: calc(2px + 2px);
   box-shadow: inset -1px -1px #000000, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
   display: flex;
   flex-direction: column;
+}
+.window.active {
+  z-index: 80;
 }
 .window.active .window__header {
   background-image: linear-gradient(to right, #000080, #1084d0);
@@ -360,7 +371,6 @@ p {
   margin-right: 3px;
 }
 .window__header__left-panel h1 {
-  font-size: 0.7em;
   font-weight: 600;
   color: white;
   -webkit-user-select: none;
@@ -382,8 +392,6 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* TODO: TEMP, REMOVE */
-  font-size: 0.6em;
 }
 .window__header__right-panel__button:last-child {
   margin-left: 2px;
@@ -391,7 +399,6 @@ p {
 .window__file-tabs {
   background-color: #c0c0c0;
   height: 20px;
-  font-size: 0.9em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -424,13 +431,14 @@ p {
 /* 
 ================================ About me - Notepad ================================
 */
-.notepad .window__field__notepad-textarea {
+.notepad textarea {
   height: 100%;
   width: 100%;
   resize: none;
   padding: 3px;
   white-space: pre-wrap;
   overflow: scroll;
+  font-size: 14px;
 }
 #window__about-me-notepad {
   height: 70%;

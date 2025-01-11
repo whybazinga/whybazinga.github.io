@@ -13,6 +13,12 @@
 @scrollbar-size: 16px;
 @scrollbar-tile-texture-size: 1px;
 
+@z-index-error: 100;
+@z-index-active-window: 80;
+@z-index-window: 60;
+@z-index-taskbar: 50;
+@z-index-base: 0;
+
 
 /*
 ================================ General HTML elements ================================
@@ -20,6 +26,12 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
+    image-rendering: pixelated;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: -0.1px;
 }
 
 html {
@@ -42,8 +54,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
 
-    font-family: Arial, sans-serif;
-    font-weight: 300;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -126,10 +136,16 @@ p {
         max-width: inherit;
     
         margin-top: 6px;
-    
-        font-size: 0.75em;
+
         color: white;
         text-align: center;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+
+        cursor: default;
     
         display: block;
     }
@@ -285,6 +301,7 @@ p {
 
     height: 28px;
     width: 100%;
+    z-index: @z-index-taskbar;
 
     padding-top: calc(@taskbar_padding-size + 2px);
     padding-bottom: @taskbar_padding-size;
@@ -330,7 +347,7 @@ p {
 #start-button__centered-text {
     width: 100%;
 
-    font-size: 0.6em;
+    font-weight: 600;
 
     display: flex;
     justify-content: center;
@@ -352,8 +369,6 @@ p {
         max-width: 160px;
 
         margin-right: 2px;
-
-        font-size: 0.6em;
     
         .button-1();
 
@@ -363,6 +378,8 @@ p {
             .dotted-background();
 
             box-shadow+: inset 0px 3px white;
+
+            font-weight: 600;
         }
 
         &:first-child {
@@ -407,8 +424,6 @@ p {
             height: 100%;
             width: 60px;
 
-            font-size: 0.6em;
-
             display: flex;
             justify-content: center;
         }
@@ -424,6 +439,7 @@ p {
     background-color: @color_grey-main;
 
     position: absolute;
+    z-index: @z-index-window;
 
     padding: calc(@taskbar_padding-size + 2px);
 
@@ -432,8 +448,12 @@ p {
     display: flex;
     flex-direction: column;
     
-    &.active .window__header {
-        .window__header__active();
+    &.active {
+        z-index: @z-index-active-window;
+
+        .window__header {
+            .window__header__active();
+        }
     }
 
     .window__header {
@@ -473,7 +493,6 @@ p {
     }
 
     h1 {
-        font-size: 0.7em;
         font-weight: 600;
         color: white;
 
@@ -496,8 +515,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* TODO: TEMP, REMOVE */
-    font-size: 0.6em;
 
     &:last-child {
         margin-left: 2px;
@@ -508,8 +525,6 @@ p {
     background-color: @color_grey-main;
 
     height: 20px;
-
-    font-size: 0.9em;
 
     display: flex;
     flex-direction: row;
@@ -551,7 +566,7 @@ p {
 */
 
 .notepad {
-    .window__field__notepad-textarea {
+    textarea {
         height: 100%;
         width: 100%;
     
@@ -561,6 +576,8 @@ p {
     
         white-space: pre-wrap;
         overflow: scroll;
+
+        font-size: 14px;
     }
 }
 
@@ -585,7 +602,7 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
+    z-index: @z-index-error;
 
     display: flex;
     flex-direction: column;
