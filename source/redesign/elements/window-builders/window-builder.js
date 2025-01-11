@@ -35,7 +35,7 @@ class WindowBuilder {
         let optionalHideButtonHtml = "";
         if (windowFrameCreateOptions.withHideButton) {
             optionalHideButtonHtml = `
-            <button class="button-1 window__header__right-panel__button">
+            <button class="button-1 window__header__right-panel__button window-hide-button">
                 <svg viewBox="0 0 12 10">
                     <rect x="2" y="7" width="6" height="2" fill="currentColor"></rect>
                 </svg>

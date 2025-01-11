@@ -41,6 +41,10 @@ class Program {
         return this.windowElement;
     }
 
+    getWindowHideButton() {
+        return document.querySelector(`#${this.getWindowId()} .window-hide-button`);
+    }
+
     getTaskbarTabId() {
         return this.#taskbarTabId;
     }

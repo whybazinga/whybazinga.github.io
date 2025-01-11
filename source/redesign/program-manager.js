@@ -16,8 +16,9 @@ class ProgramManager {
     }
 
     registerProgram(program) {
-        program.getWindow().addEventListener("click", this.#createWindowClickListener(program));
-        program.getTaskbarTab().addEventListener("click", this.#createTaskbarTabClickListener(program));
+        program.getWindow().addEventListener("click", this.#createWindowClickListener(program), false);
+        program.getWindowHideButton().addEventListener("click", this.#createWindowHideButtonClickListener(program));
+        program.getTaskbarTab().addEventListener("click", this.#createTaskbarTabClickListener(program), false);
 
         this.#registeredPrograms.push(program);
     }
@@ -48,6 +49,21 @@ class ProgramManager {
 
             this.#switchActivity(this.#activeProgram, owningProgram);
             this.#activeProgram = owningProgram;
+        };
+    }
+
+    #createWindowHideButtonClickListener(owningProgram) {
+        return (event) => {
+            if (this.#isShowingError()) {
+                return;
+            }
+
+            this.#switchActivity(this.#activeProgram, null);
+            this.#activeProgram = null;
+
+            owningProgram.hide();
+
+            event.stopPropagation();
         };
     }
 
