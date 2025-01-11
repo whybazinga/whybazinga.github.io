@@ -25,7 +25,7 @@ const errorWindow = {
             </div>
             <div class="error-window__body-container__message">
                 <p>
-                    Please don't do that!
+                    Please don't do that! (..not implemented yet)
                 </p>
             </div>
         `;
