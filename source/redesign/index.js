@@ -22,7 +22,7 @@ const aboutMeNotepadWindow = notepadWindow.build({
 
         I am a Software Engineer with experience in Game (5+yrs) and Web (2yr) development.
 
-        Below, you’ll find some of my links, feel free to check them out!
+        Below, you'll find some of my links, feel free to check them out!
 
         Linkedin: https://www.linkedin.com/in/whybazinga/
         Github: https://github.com/whybazinga
@@ -36,10 +36,10 @@ const aboutMeNotepadWindow = notepadWindow.build({
                     The only dependency this project has is LessCSS (https://lesscss.org/),
                     that totally saved me from going insane writing in pure CSS.
                     
-                    That’s not to say that everything else is straightforward—it’s been a long time
-                    since I’ve written in JavaScript! 
+                    That's not to say that everything else is straightforward - it's been a long time
+                    since I've written in JavaScript! 
                     
-                    However, it was a fun experience, and that’s what matters most.
+                    However, it was a fun experience, and that's what matters most.
 
     `,
     style: {
