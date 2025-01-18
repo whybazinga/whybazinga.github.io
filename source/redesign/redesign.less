@@ -157,6 +157,7 @@ p {
 
 .with-custom-scrollbar
 {
+    cursor: default;
     &::-webkit-scrollbar {
         background: none;
     
@@ -167,30 +168,47 @@ p {
     }
 
     &::-webkit-scrollbar-button {
+        &:single-button {
+            &:vertical {
+                &:decrement {
+                    background-image: url(../resources/windows-98-button-arrow-up-icon-16x16.png);
+                }
+
+                &:increment {
+                    background-image: url(../resources/windows-98-button-arrow-down-icon-16x16.png);
+                }
+            }
+
+            &:horizontal {
+                &:decrement {
+                    background-image: url(../resources/windows-98-button-arrow-left-icon-16x16.png);
+                }
+
+                &:increment {
+                    background-image: url(../resources/windows-98-button-arrow-right-icon-16x16.png);
+                }
+            }
+        }
+
         height: @scrollbar-size;
         width: @scrollbar-size;
     
         .button-2();
-
-        cursor: default;
     }
 
     &::-webkit-scrollbar-thumb {
         background-color: @color_grey-main;
 
         .border-2();
-
-        cursor: default;
     }
 
     &::-webkit-scrollbar-track {
         .dotted-background();
-
-        cursor: default;
     }
 
     &::-webkit-scrollbar-corner {
         background-color: @color_grey-main;
+        background-image: url(../resources/windows-98-scrollbar-corner-icon-16x16.png);
     }
 }
 
