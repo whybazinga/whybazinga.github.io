@@ -30,7 +30,6 @@ const aboutMeNotepadWindow = notepadWindow.build({
 
 
 
-
                     This small website is a spontaneous adventure I started one evening. 
                     
                     The only dependency this project has is LessCSS (https://lesscss.org/),
@@ -40,6 +39,15 @@ const aboutMeNotepadWindow = notepadWindow.build({
                     since I've written in JavaScript! 
                     
                     However, it was a fun experience, and that's what matters most.
+
+
+
+
+        Also feel free to check out my Global Game Jam 2025 submission:
+
+        Did you hear what happened to Luca Brasi?
+        Cooperative real-time chess knights fighting game.
+        https://globalgamejam.org/games/2025/did-you-hear-what-happened-luca-brasi-1
 
     `,
     style: {
