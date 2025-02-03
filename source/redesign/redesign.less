@@ -168,32 +168,54 @@ p {
     }
 
     &::-webkit-scrollbar-button {
+        height: @scrollbar-size;
+        width: @scrollbar-size;
+    
+        .button-2();
+
         &:single-button {
+            background-position: center center;
+
             &:vertical {
                 &:decrement {
                     background-image: url(../resources/windows-98-button-arrow-up-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-up-disabled-icon-16x16.png);
+                    }
                 }
 
                 &:increment {
                     background-image: url(../resources/windows-98-button-arrow-down-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-down-disabled-icon-16x16.png);
+                    }
                 }
             }
 
             &:horizontal {
                 &:decrement {
                     background-image: url(../resources/windows-98-button-arrow-left-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-left-disabled-icon-16x16.png);
+                    }
                 }
 
                 &:increment {
                     background-image: url(../resources/windows-98-button-arrow-right-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-right-disabled-icon-16x16.png);
+                    }
                 }
             }
         }
 
-        height: @scrollbar-size;
-        width: @scrollbar-size;
-    
-        .button-2();
+        &:active {
+            .border-2__pressed-light();
+        }
     }
 
     &::-webkit-scrollbar-thumb {
@@ -303,6 +325,11 @@ p {
                 inset 1px 1px @color_grey-dark,
                 inset -2px -2px @color_grey-light,
                 inset 2px 2px @color_black;
+}
+
+.border-2__pressed-light {
+    box-shadow: none;
+    border: 1px solid @color_grey-dark;
 }
 
 .border-3 {

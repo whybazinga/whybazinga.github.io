@@ -125,21 +125,40 @@ p {
   user-select: none;
   /* Standard syntax */
 }
+.with-custom-scrollbar::-webkit-scrollbar-button.pressed,
+.with-custom-scrollbar::-webkit-scrollbar-button:active {
+  box-shadow: inset 1px #808080;
+}
+.with-custom-scrollbar::-webkit-scrollbar-button:single-button {
+  background-position: center center;
+}
 .with-custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
   background-image: url(../resources/windows-98-button-arrow-up-icon-16x16.png);
+}
+.with-custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement:disabled {
+  background-image: url(../resources/windows-98-button-arrow-up-disabled-icon-16x16.png);
 }
 .with-custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
   background-image: url(../resources/windows-98-button-arrow-down-icon-16x16.png);
 }
+.with-custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment:disabled {
+  background-image: url(../resources/windows-98-button-arrow-down-disabled-icon-16x16.png);
+}
 .with-custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement {
   background-image: url(../resources/windows-98-button-arrow-left-icon-16x16.png);
+}
+.with-custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement:disabled {
+  background-image: url(../resources/windows-98-button-arrow-left-disabled-icon-16x16.png);
 }
 .with-custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
   background-image: url(../resources/windows-98-button-arrow-right-icon-16x16.png);
 }
-.with-custom-scrollbar::-webkit-scrollbar-button.pressed,
+.with-custom-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment:disabled {
+  background-image: url(../resources/windows-98-button-arrow-right-disabled-icon-16x16.png);
+}
 .with-custom-scrollbar::-webkit-scrollbar-button:active {
-  box-shadow: inset 1px #808080;
+  box-shadow: none;
+  border: 1px solid #808080;
 }
 .with-custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c0c0c0;
@@ -216,6 +235,10 @@ p {
 }
 .border-2__pressed {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #000000;
+}
+.border-2__pressed-light {
+  box-shadow: none;
+  border: 1px solid #808080;
 }
 .border-3 {
   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
