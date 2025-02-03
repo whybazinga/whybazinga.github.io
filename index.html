@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>whybazinga's shelter</title>
-        <link rel="stylesheet" href="index.css">
-        <script src="https://kit.fontawesome.com/b137c106b3.js" crossorigin="anonymous"></script>
+        <title>
+            whybazinga 98
+        </title>
+        <link rel="icon" type="image/x-icon" href="public/resources/windows-98-site-icon-16x16.png">
+        <link rel="stylesheet" href="public/redesign/redesign.css">
     </head>
     <body>
-        <p>hello there</p>
-        <div id="socials-panel">
-            <a class="socials-element" href="https://www.linkedin.com/in/whybazinga/" target="_blank">
-                <i class="fa-brands fa-linkedin"></i>
-                <span>linkedin</span>
-            </a>
-            <a class="socials-element" href="https://mastodon.gamedev.place/@whybazinga" target="_blank">
-                <i class="fa-brands fa-mastodon"></i>
-                <span>mastodon</span>
-            </a>
-            <a class="socials-element" href="https://github.com/whybazinga" target="_blank">
-                <i class="fa-brands fa-github"></i>
-                <span>github</span>
-            </a>
-            <a class="socials-element" href="https://www.youtube.com/watch?v=meDhP3srTG4" target="_blank">
-                <i class="fa-brands fa-youtube"></i>
-                <span>funny video</span>
-            </a>
-        </div>
+        <main>
+            <div id="desktop">
+                <div class="desktop-item">
+                    <img src="./public/resources/windows-98-computer_explorer-3-icon-32x32.png">
+                    <p>My Computer</p>
+                </div>
+                <div class="desktop-item">
+                    <img src="./public/resources/windows-98-mydocs-icon-32x32.png">
+                    <p>My Documents</p>
+                </div>
+                <div class="desktop-item">
+                    <img src="./public/resources/windows-98-recycle_bin_full-icon-32x32.png">
+                    <p>Recycle Bin</p>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div id="taskbar">
+                <div id="taskbar__inner-container">
+                    <div id="taskbar__start-button-area-container">
+                        <button id="start-button" class="button-1 not-implemented">
+                            <img src="./public/resources/windows-98-site-icon-16x16.png">
+                            <b id="start-button__centered-text">Start</b>
+                        </button>
+                        <div class="divider-1"></div>
+                        <div class="divider-2"></div>
+                    </div>
+                    <div id="taskbar__quick-access-area-container">
+                        <div style="width: 77px;"></div>
+                        <div class="divider-1"></div>
+                        <div class="divider-2"></div>
+                    </div>
+                    <div id="taskbar__program-tabs-area-container">
+                    </div>
+                    <div id="taskbar__notification-area-container">
+                        <div class="divider-1"></div>
+                        <div id="taskbar__notification-area">
+                            <div id="taskbar__notification-area__time"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="source/redesign/general/delegate.js"></script>
+        <script src="source/redesign/elements/window-builders/window-builder.js"></script>
+        <script src="source/redesign/elements/window-builders/error-builder.js"></script>
+        <script src="source/redesign/elements/window-builders/image-viewer-builder.js"></script>
+        <script src="source/redesign/elements/window-builders/notepad-builder.js"></script>
+        <script src="source/redesign/elements/taskbar/notification-area.js"></script>
+        <script src="source/redesign/elements/taskbar/program-tabs-area.js"></script>
+        <script src="source/redesign/program.js"></script>
+        <script src="source/redesign/program-manager.js"></script>
+        <script src="source/redesign/index.js"></script>
     </body>
 </html>

@@ -1,0 +1,708 @@
+@desktop-background: rgb(0, 128, 128);
+
+@window_header_height: 18px;
+
+@taskbar_padding-size: 2px;
+
+@color_white: rgb(255, 255, 255);
+@color_grey-main: rgb(192, 192, 192);
+@color_grey-light: rgb(223, 223, 223);
+@color_grey-dark: rgb(128, 128, 128);
+@color_black: rgb(0, 0, 0);
+
+@scrollbar-size: 16px;
+@scrollbar-tile-texture-size: 1px;
+
+@z-index-error: 100;
+@z-index-active-window: 80;
+@z-index-window: 60;
+@z-index-taskbar: 50;
+@z-index-base: 0;
+
+
+/*
+================================ General HTML elements ================================
+*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    image-rendering: pixelated;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: -0.1px;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+    background-color: @desktop-background;
+
+    z-index: 10;
+
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    all: unset;
+    box-sizing: border-box;
+}
+
+textarea {
+    all: unset;
+    box-sizing: border-box;
+}
+
+p {
+    all: unset;
+}
+
+
+/*
+================================ General Mixins ================================
+*/
+
+.prevent-text-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.hidden {
+    display: none !important;
+}
+
+.dotted-background {
+    background-color: @color_white;
+    background-image:   linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main),
+                        linear-gradient(45deg, @color_grey-main 25%, transparent 25%, transparent 75%, @color_grey-main 75%, @color_grey-main);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+}
+
+/* 
+================================ Desktop Items ================================
+*/
+
+#desktop {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column wrap;
+    flex-grow: 1;
+}
+
+.desktop-item {
+    height: 64px;
+    width: 64px;
+
+    max-height: 64px;
+    max-width: 64px;
+
+    margin: 16px 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        height: 32px;
+        width: 32px;
+    }
+
+    p {
+        max-height: inherit;
+        max-width: inherit;
+    
+        margin-top: 6px;
+
+        color: white;
+        text-align: center;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+
+        cursor: default;
+    
+        display: block;
+    }
+}
+
+/* 
+================================ Elements ================================
+*/
+
+.with-custom-scrollbar
+{
+    cursor: default;
+    &::-webkit-scrollbar {
+        background: none;
+    
+        height: @scrollbar-size;
+        width: @scrollbar-size;
+
+        cursor: default;
+    }
+
+    &::-webkit-scrollbar-button {
+        height: @scrollbar-size;
+        width: @scrollbar-size;
+    
+        .button-2();
+
+        &:single-button {
+            background-position: center center;
+
+            &:vertical {
+                &:decrement {
+                    background-image: url(../resources/windows-98-button-arrow-up-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-up-disabled-icon-16x16.png);
+                    }
+                }
+
+                &:increment {
+                    background-image: url(../resources/windows-98-button-arrow-down-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-down-disabled-icon-16x16.png);
+                    }
+                }
+            }
+
+            &:horizontal {
+                &:decrement {
+                    background-image: url(../resources/windows-98-button-arrow-left-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-left-disabled-icon-16x16.png);
+                    }
+                }
+
+                &:increment {
+                    background-image: url(../resources/windows-98-button-arrow-right-icon-16x16.png);
+
+                    &:disabled {
+                        background-image: url(../resources/windows-98-button-arrow-right-disabled-icon-16x16.png);
+                    }
+                }
+            }
+        }
+
+        &:active {
+            .border-2__pressed-light();
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: @color_grey-main;
+
+        .border-2();
+    }
+
+    &::-webkit-scrollbar-track {
+        .dotted-background();
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: @color_grey-main;
+        background-image: url(../resources/windows-98-scrollbar-corner-icon-16x16.png);
+    }
+}
+
+
+.button-1 {
+    background-color: @color_grey-main;
+
+    padding: 2px;
+
+    border-radius: 0px;
+    .border-1();
+
+    &.heavy {
+        .border-1__heavy();
+    }
+
+    &.pressed, &:active {
+        .border-1__pressed();
+    }
+
+    .prevent-text-select();
+}
+
+.button-2 {
+    background-color: @color_grey-main;
+
+    border-radius: 0px;
+    .border-2();
+
+    &.pressed, &:active {
+        box-shadow: inset 1px @color_grey-dark;
+    }
+
+    .prevent-text-select();
+}
+
+.divider-1 {
+    height: 22px;
+    width: 2px;
+
+    margin-left: 2px;
+
+    box-shadow: inset -1px 0px @color_white,
+                inset 1px 0px @color_grey-dark;
+}
+
+.divider-2 {
+    height: 18px;
+    width: 3px;
+
+    margin-left: 2px;
+    margin-right: 2px;
+
+    box-shadow: inset 0px -1px @color_grey-dark,
+                inset 1px 0px @color_white,
+                inset -1px 0px @color_grey-dark,
+                inset 1px -1px @color_grey-dark,
+                inset 0px 1px @color_white;
+}
+
+.border-1 {
+    box-shadow+: inset -1px -1px @color_black,
+                inset 1px 1px @color_white,
+                inset -2px -2px @color_grey-dark,
+                inset 2px 2px @color_grey-light;
+}
+
+.border-1__heavy {
+    box-shadow+: inset 1px 1px @color_black,
+                inset -2px -2px @color_black,
+                inset 2px 2px @color_white,
+                inset -3px -3px @color_grey-dark,
+                inset 3px 3px @color_grey-light;
+}
+
+.border-1__pressed {
+    box-shadow+: inset -1px -1px @color_white,
+                inset 1px 1px @color_black,
+                inset -2px -2px @color_grey-light,
+                inset 2px 2px @color_grey-dark;
+}
+
+.border-2 {
+    box-shadow+: inset -1px -1px @color_black,
+                inset 1px 1px @color_grey-light,
+                inset -2px -2px @color_grey-dark,
+                inset 2px 2px @color_white;
+}
+
+.border-2__pressed {
+    box-shadow+: inset -1px -1px @color_white,
+                inset 1px 1px @color_grey-dark,
+                inset -2px -2px @color_grey-light,
+                inset 2px 2px @color_black;
+}
+
+.border-2__pressed-light {
+    box-shadow: none;
+    border: 1px solid @color_grey-dark;
+}
+
+.border-3 {
+    box-shadow+: inset -1px -1px @color_white,
+                inset 1px 1px @color_grey-dark;
+}
+
+/* 
+================================ Task Bar ================================
+*/
+
+#taskbar {
+    background-color: @color_grey-main;
+
+    height: 28px;
+    width: 100%;
+    z-index: @z-index-taskbar;
+
+    padding-top: calc(@taskbar_padding-size + 2px);
+    padding-bottom: @taskbar_padding-size;
+    padding-left: @taskbar_padding-size;
+    padding-right: @taskbar_padding-size;
+
+    box-shadow: inset 0 1px @color_grey-light, 
+                inset 0 2px @color_white;
+}
+
+#taskbar__inner-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+#taskbar__start-button-area-container {
+    height: 100%;
+}
+
+#start-button {
+    height: 100%;
+    width: 56px;
+
+    padding: calc(@taskbar_padding-size + 1px) calc(@taskbar_padding-size + 2px);
+
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+#start-button__centered-text {
+    width: 100%;
+
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+}
+
+#taskbar__quick-access-area-container {
+    height: 100%;
+}
+
+#taskbar__program-tabs-area-container {
+    height: 100%;
+    width: 100%;
+
+    flex-grow: 1;
+
+    .taskbar__program-tabs-area__tab {    
+        height: 100%;
+        width: 160px;
+        max-width: 160px;
+
+        margin-right: 2px;
+    
+        .button-1();
+
+        // TODO: FIXME not pretty
+        &.active, &.pressed, &:active {
+            .border-1__pressed();
+            .dotted-background();
+
+            box-shadow+: inset 0px 3px white;
+
+            font-weight: 600;
+        }
+
+        &:first-child {
+            margin-left: 2px;
+        }
+
+        img {
+            margin-left: 2px;
+            margin-right: 3px;
+        }
+    }
+}
+
+#taskbar__notification-area-container {
+    height: 100%;
+
+    .divider-1 {
+        margin-left: 0px;
+        margin-right: 2px;
+    }
+
+    #taskbar__notification-area {
+        height: 100%;
+
+        display: flex;
+        flex-grow: 1;
+
+        .border-3();
+
+        .taskbar__notification-area__program-icon {
+            height: 16px;
+            width: 16px;
+
+            margin-right: 1px;
+
+            &:first-child {
+                margin-left: 2px;
+            }
+        }
+
+        #taskbar__notification-area__time {
+            height: 100%;
+            width: 60px;
+
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+}
+
+/* 
+================================ Windows ================================
+*/
+
+.window {
+    background-color: @color_grey-main;
+
+    position: absolute;
+    z-index: @z-index-window;
+
+    padding: calc(@taskbar_padding-size + 2px);
+
+    .border-2();
+
+    display: flex;
+    flex-direction: column;
+    
+    &.active {
+        z-index: @z-index-active-window;
+
+        .window__header {
+            .window__header__active();
+        }
+    }
+
+    .window__header {
+        height: 18px;
+        width: 100%;
+
+        padding: 1px 2px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .window__header__passive();
+    }
+}
+
+.window__header__active {
+    background-image: linear-gradient(to right, rgb(0, 0, 128), rgb(16, 132, 208));
+}
+
+.window__header__passive {
+    background-image: linear-gradient(to right, rgb(128, 128, 128), rgb(181, 181, 181));
+}
+
+.window__header__left-panel {
+    height: 100%;
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 16px;
+        width: 16px;
+    
+        margin-right: 3px;
+    }
+
+    h1 {
+        font-weight: 600;
+        color: white;
+
+        .prevent-text-select();
+    }
+}
+
+.window__header__right-panel {
+    height: 100%;
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+}
+
+.window__header__right-panel__button {
+    height: 14px;
+    width: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:last-child {
+        margin-left: 2px;
+    }
+}
+
+.window__file-tabs {
+    background-color: @color_grey-main;
+
+    height: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.window__file-tabs__tab {
+    padding-left: 6px;
+    padding-right: 10px;
+
+    &::first-letter {
+        text-decoration:underline;
+    }
+
+    .prevent-text-select();
+
+    &.pressed, &:active, &:hover {
+        .border-3();
+    }
+}
+
+.window__field {
+    background-color: white;
+
+    width: 100%;
+
+    box-shadow: inset -1px -1px @color_white,
+                inset 1px 1px @color_grey-dark,
+                inset -2px -2px @color_grey-light,
+                inset 2px 2px @color_black;
+
+    padding: @taskbar_padding-size;
+
+    flex-grow: 1;
+}
+
+/* 
+================================ About me - Notepad ================================
+*/
+
+.notepad {
+    textarea {
+        height: 100%;
+        width: 100%;
+    
+        resize: none;
+    
+        padding: 3px;
+    
+        white-space: pre-wrap;
+        overflow: scroll;
+
+        font-size: 14px;
+    }
+}
+
+
+
+#window__about-me-notepad {
+    height: 70%;
+    width: 50%;
+
+    min-height: 160px;
+    min-width: fit-content;
+}
+
+/* 
+================================ Error ================================
+*/
+
+#window__error {
+    height: 126px;
+    width: 314px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: @z-index-error;
+
+    display: flex;
+    flex-direction: column;
+
+    .error-window__body-container {
+        width: 100%;
+
+        margin-top: 12px;
+
+        display: flex;
+        flex-grow: 1;
+
+        .error-window__body-container__icon {
+            padding-left: 10px;
+            padding-right: 12px;
+        }
+
+        .error-window__body-container__message {
+            padding-top: 2px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    }
+
+    .error-window__ok-button-container {
+        width: 100%;
+
+        padding-top: 14px;
+        padding-bottom: 10px;
+
+        display: flex;
+        justify-content: center;
+
+        .error-window__ok-button {
+            height: 23px;
+            width: 75px;
+
+            text-align: center;
+        }
+    }
+}
+
+/* 
+================================ Image Viewer ================================
+*/
+
+#window__my-image-viewer {
+    height: 200px;
+    width: 300px;
+
+    .window__field {
+        background-color: @color_grey-main;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
