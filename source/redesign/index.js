@@ -20,7 +20,7 @@ const aboutMeNotepadWindow = notepadWindow.build({
                     ...or WBZN if you prefer tags over names :)
         
 
-        I am a Software Engineer with experience in Game (5+yrs) and Web (2yr) development.
+        I am a Software Engineer with experience in Game (6+yrs) and Web (2yr) development.
 
         Below, you'll find some of my links, feel free to check them out!
 
