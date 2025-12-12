@@ -367,6 +367,10 @@ p {
 */
 .window {
   background-color: #c0c0c0;
+  height: 128px;
+  width: 128px;
+  top: 10px;
+  left: 10px;
   position: absolute;
   z-index: 60;
   padding: calc(2px + 2px);
