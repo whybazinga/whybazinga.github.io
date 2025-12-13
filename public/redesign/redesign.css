@@ -539,3 +539,19 @@ p {
   justify-content: center;
   align-items: center;
 }
+/* 
+================================ Game of Life ================================
+*/
+#window__my-game-of-life {
+  height: 320px;
+  width: 300px;
+}
+#window__my-game-of-life .window__field {
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#window__my-game-of-life .window__field canvas {
+  border: 1px solid #808080;
+}

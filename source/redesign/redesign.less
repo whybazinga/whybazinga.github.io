@@ -711,3 +711,25 @@ p {
         align-items: center;
     }
 }
+
+
+/* 
+================================ Game of Life ================================
+*/
+
+#window__my-game-of-life {
+    height: 320px;
+    width: 300px;
+
+    .window__field {
+        background-color: @color_grey-main;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        canvas {
+            border: 1px solid @color_grey-dark;
+        }
+    }
+}

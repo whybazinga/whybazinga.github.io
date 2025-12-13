@@ -95,6 +95,33 @@ myImageViewer.taskbarTabElement = myImageViewerTaskbarProgramTab;
 
 myImageViewer.initialize();
 
+// Game Of Life Window
+
+const myGameOfLife = new Program({
+    id: "my-game-of-life"
+});
+
+const myGameOfLifeWindow = gameOfLifeWindow.build({
+    idAttribute: myGameOfLife.getWindowId(),
+    title: "Game of Life",
+    iconPath: "./public/resources/windows-98-world-16x16.png",
+    style: {
+        top: "36%",
+        left: "18%",
+    }
+});
+
+const myGameOfLifeTaskbarProgramTab = programTabsArea.buildTab(
+    myGameOfLife.getTaskbarTabId(),
+    "./public/resources/windows-98-world-16x16.png",
+    "Game of Life"
+);
+
+myGameOfLife.windowElement = myGameOfLifeWindow;
+myGameOfLife.taskbarTabElement = myGameOfLifeTaskbarProgramTab;
+
+myGameOfLife.initialize();
+
 // Error
 
 const myError = new Program({
@@ -123,6 +150,7 @@ myError.initialize();
 const manager = new ProgramManager();
 manager.registerProgram(aboutMeNotepad);
 manager.registerProgram(myImageViewer);
+manager.registerProgram(myGameOfLife);
 manager.registerError(myError);
 
 
