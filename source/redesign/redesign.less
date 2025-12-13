@@ -483,6 +483,11 @@ p {
 .window {
     background-color: @color_grey-main;
 
+    height: 128px;
+    width: 128px;
+
+    top: 10px;
+    left: 10px;
     position: absolute;
     z-index: @z-index-window;
 
@@ -704,5 +709,27 @@ p {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+
+/* 
+================================ Game of Life ================================
+*/
+
+#window__my-game-of-life {
+    height: 320px;
+    width: 300px;
+
+    .window__field {
+        background-color: @color_grey-main;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        canvas {
+            border: 1px solid @color_grey-dark;
+        }
     }
 }
