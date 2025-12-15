@@ -2,7 +2,7 @@ const defaultimageViewerCreateOptions = {
     imageSrc: "",
 }
 
-const imageViewer = {
+const imageViewerWindow = {
     build: (imageViewerCreateOptions) => {
         const imageViewerFrameCreateOptions = {
             ...defaultimageViewerCreateOptions,
